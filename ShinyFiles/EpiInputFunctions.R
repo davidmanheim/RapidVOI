@@ -5,20 +5,6 @@
 library(MASS)
 
 
-##############################
-# epi inputs models require
-#############################
-
-# additional for binary
-# P_t1, # NB: this is currently simulated within the functions using rep(P_t1, MCsims)
-# additional for survival
-# survivalDist,scaleParameter_t1,shapeParameter_t1
-# required for all models 
-# mu_t2, variance_t2, dist_t2, direction_t2,
-# mu_t3, variance_t3, dist_t3, direction_t3,
-# mu_t4, variance_t4, dist_t4, direction_t4
-
-
 
 ##########################################
 ##########################################
@@ -30,16 +16,11 @@ library(MASS)
 # Binary endpoint: baseline probability
 #######################################
 
-# there are 3 methods to input baseline probability
-# 1) single value: no uncertainty in baseline
+# there are 2 methods to input baseline probability
 # 2) UCI and LCI for probability: input using slider normalParameters() calculates mu and sigma
 # 3) nEvents, nAtRisk: used to draw a beta distribution
 
 
-# Binary endpoint; baseline probability 1) no uncertainty
-##############################################################
-
-# user input: P_t1
 
 
 # Binary endpoint, baseline probability 2) from LCI and UCI on baseline probability
@@ -57,11 +38,9 @@ library(MASS)
 
 # function
 # input: prob_UCI and prob_LCI
-# output: mu_prob (exact expected probability), sigma (log odds scale), mu  (mean on log odds scale)
-# this output can then be used to calculate P_t1 using:
-# LO <- rnorm(MCsims, mu, sigma)
-# Odds <- exp(LO)
-# P_t1 <- Odds/(1 + Odds)
+# output: mu_prob (exact expected probability), P_t1
+#  
+
 # assumes normal log odds distribution
 
 # test data (from Excel model)
@@ -69,71 +48,53 @@ library(MASS)
 #prob_LCI = 0.248
 
 # define function
-probCI <- function(prob_LCI, prob_UCI){
+BaselineProbCI <- function(MCsims, prob_LCI, prob_UCI){
   
-  # convert prob CIs to odds CIs
-  Odds_UCI <- prob_UCI/(1 - prob_UCI)
-  Odds_LCI <- prob_LCI/(1 - prob_LCI)
+  # if there is no uncertainty in the slider input
+  if(prob_LCI == prob_UCI){
+    
+    mu_prob <- prob_LCI
+    P_t1 <- rep(mu_prob,MCsims)
+    
+    outputs <- list(P_t1 = P_t1, mu_prob = mu_prob)
+    
+  } else {
+    
+    # convert prob CIs to odds CIs
+    Odds_UCI <- prob_UCI/(1 - prob_UCI)
+    Odds_LCI <- prob_LCI/(1 - prob_LCI)
+    
+    # convert to log scale as sigma is symmetrical around the mean on this scale
+    LO_UCI <- log(Odds_UCI)
+    LO_LCI <- log(Odds_LCI)
+    
+    sigma <- abs(LO_UCI - LO_LCI)/(2*1.96)
+    mu <- LO_LCI + 1.96*sigma # mean on log odds scale
+    mu_OR <- exp(mu)
+    mu_prob <- mu_OR/(1 + mu_OR)
+    
+    LO <- rnorm(MCsims, mu, sigma)
+    Odds <- exp(LO)
+    P_t1 <- Odds/(1 + Odds)
+    
+    
+    outputs <- list(P_t1 = P_t1, mu_prob = mu_prob)
+    
+  }
   
-  # convert to log scale as sigma is symmetrical around the mean on this scale
-  LO_UCI <- log(Odds_UCI)
-  LO_LCI <- log(Odds_LCI)
   
-  sigma <- abs(LO_UCI - LO_LCI)/(2*1.96)
-  mu <- LO_LCI + 1.96*sigma # mean on log odds scale
-  mu_OR <- exp(mu)
-  mu_prob <- mu_OR/(1 + mu_OR)
-  
-  
-  outputs <- list(mu_prob = mu_prob, mu = mu, sigma = sigma)
   return(outputs)
   
 }
 
 # test function (from Excel model)
-#probCI(0.248,0.469)
+#BaselineProbCI(10000, 0.248,0.469)
+#BaselineProbCI(10, 0.2, 0.2)
 
-
-
-
-
-# Binary endpoint, baseline probability 2) Exact sampling: from normal distribution 
-############
-# given mu and sigma (calculated above) creates vector of samples in direct proportion to normal theoretical distribution
-# within a user defined range. This vector can be manipulated to convert to probability distribution
-# v.quick!
-
-# inputs: mu, sigma
-# outputs: exactVector (vector of samples) 
-
-# define function
-exactVectorNormal <- function( mu, sigma){
-  
-  # just need to sample reasonablely close to mean
-  lowerBound <- mu - 6*sigma
-  upperBound <- mu + 6*sigma
-  # vector of points at which samples will be taken
-  # lower bound , upper bound , and length.out = resolution of curve
-  x_axis <- seq(lowerBound, upperBound, length.out = 1000) # 1000 appears to work well
-  
-  # gives a vecor of values for each point in x_axis vector which represent how likely they are
-  # in the theoretical distribution (normal with mean mu and sigma)
-  density_vector <- dnorm(x_axis, mu, sigma)
-  
-  # normalise this vector to give highest value in density_vector the value of 1 (the most likely point)
-  normalised_density_vector <- density_vector/(max(density_vector))
-  
-  # take samples of each point in x_axis proportionate to its frequency in the theoretical distribution
-  # try values to see how it works: 1000 samples of most likely point
-  exactVector <- rep(x_axis, times = normalised_density_vector*1000) 
-  
-  return(exactVector )
-  
-}
-
-# test function
-#exactVector <- exactVectorNormal(10, 2.1)
-#plot(density(exactVector))
+# consistency test
+#x <- BaselineProbCI(1009999, 0.248,0.469)
+#x$mu_prob
+#mean(x$P_t1)
 
 
 
@@ -142,7 +103,9 @@ exactVectorNormal <- function( mu, sigma){
 
 
 
-# Binary endpoint: baseline probability 3) from events vs number at risk
+
+
+# Binary endpoint: baseline probability 2) from events vs number at risk
 ############################################
 
 # function
@@ -156,14 +119,14 @@ exactVectorNormal <- function( mu, sigma){
 #MCsims = 100000
 
 # define function
-probEvents <- function(nEvents, nAtRisk, MCsims){
+probEvents <- function(MCsims, nEvents, nAtRisk){
   
   # beta parameter for beta distribution
   nNonEvents <- nAtRisk - nEvents
   mu_prob <- nEvents/(nEvents + nNonEvents)
   
   P_t1 <- rbeta(MCsims,nEvents,nNonEvents )
-  outputs <- list(mu_prob = mu_prob, P_t1 = P_t1)
+  outputs <- list(P_t1 = P_t1, mu_prob = mu_prob)
   
   return(outputs)
 }
@@ -173,25 +136,6 @@ probEvents <- function(nEvents, nAtRisk, MCsims){
 
 
 
-# Binary endpoint: baseline probability 3) plot function (no randomness)
-######################
-# used??
-# no randomness: based on exact densities from beta distribution
-# inputs: nEvents, nAtRisk
-# output: plot object
-#plotBetaEvents <- function(nEvents, nAtRisk){
-#  
-#  # beta parameter for beta distribution
-#  nNonEvents <- nAtRisk - nEvents
-#  
-#  x_axis <- seq(0, 1, length.out = 100)
-#  y_axis <- dbeta(x_axis, nEvents, nNonEvents)
-#  
-#  plot <- plot(x = x_axis, y = y_axis, type = "l")
-#  return(plot)
-#}
-# test plot function
-#plotBetaEvents(2, 20)
 
 
 
@@ -199,56 +143,6 @@ probEvents <- function(nEvents, nAtRisk, MCsims){
 
 
 
-# Binary endpoint: baseline probability: PLOT ALL FUNCTION baseline probability from different methods
-##########################################################
-# there are 3 methods to input baseline probability
-# 1) single value: no uncertainty in baseline
-# 2) UCI and LCI for probability: input using slider normalParameters() calculates mu and sigma
-# 3) nEvents, nAtRisk: used to draw a beta distribution
-
-# require above functions
-
-
-# test data
-#input <- list()
-#input$baselineInput ="confidenceBounds"   # "events" # singleValue
-#nEvents = 10
-#nAtRisk = 30
-#prob_UCI = 0.2
-#prob_LCI = 0.01
-#P_t1 = 0.3
-
-# input: mu , sigma or alpha, beta, input$baselineInput
-# output: plot object
-
-# wrap in a function??
-
-# if(input$baselineInput == "events"){
-#   
-#   plotBetaEvents(nEvents, nAtRisk)
-#   
-# } 
-
-# also conditional on the confidence bounds not being equal
-# if(input$baselineInput == "confidenceBounds"){
-#   
-#   normalParameters <-  probCI(prob_UCI, prob_LCI)
-#   LO_vector <- exactVectorNormal(normalParameters$mu, normalParameters$sigma)
-#   Odds_vector <- exp(LO_vector)
-#   Prob_vector <- Odds_vector/(1 + Odds_vector)
-#   
-#   plot(density(Prob_vector), xlim = c(0, 1))
-#   
-# }
-
-
-# or if confidence bounds are equal
-# if(input$baselineInput == "singleValue"){
-#   
-#   plot(1, type="n", xlab="", ylab="", xlim=c(0, 1), ylim=c(0, 10))
-#   abline(v = P_t1)
-#   
-# }
 
 
 
@@ -261,14 +155,16 @@ probEvents <- function(nEvents, nAtRisk, MCsims){
 ########################################
 # Binary endpoint: relative effects
 #######################################
-# ? take P_t1 vector (could be uncertain or single valued but must represent the MCsims in its length)
-# ? output P_tn
+# input: P_t1 vector (could be uncertain or single valued but must represent the MCsims in its length)
+# output: P_tn
 
 # there are # methods to input relative effects
 # 1) UCI and LCI for natural odds ratio scale
 # 2) UCI and LCI for natural RR scale
 # 3) UCI and LCI for risk difference
-# 4) 
+# 4) HalfNormal range odds ratio scale
+# 5) HalfNormal range RR scale
+# 6) HalfNormal range risk difference
 
 
 
@@ -397,7 +293,7 @@ aproxBetaParams <- function(P_tn){
   # function finds alpha and beta parameter estimates from data for a beta function
   # optimising function with initial values
   suppressWarnings( # suppress that NaNs are produced - the function appears to work well
-  fit_beta <- fitdistr(P_tn,"beta",list(shape1=1,shape2=1)) 
+    fit_beta <- fitdistr(P_tn,"beta",list(shape1=1,shape2=1)) 
   )
   
   # round the result (hopefully should mean that identical inputs will give identical estimates)
@@ -445,22 +341,15 @@ aproxBetaParams <- function(P_tn){
 # define function
 # <- function(nEvents, nAtRisk, MCsims){
 
- 
-   # function finds alpha and beta parameter estimates from data for a beta function
-   # optimising function with initial values
+
+# function finds alpha and beta parameter estimates from data for a beta function
+# optimising function with initial values
 # fit_beta <- fitdistr(sims,"beta",list(shape1=1,shape2=1)) 
 #    alpha_hat <- round(fit_beta$estimate[1],1) 
 #    beta_hat <- round(fit_beta$estimate[2],1)
 #    x_axis <- seq(0, 1, length.out = 100)
 # plot(density(sims))
 # lines(x_axis, dbeta(x_axis,alpha_hat, beta_hat ))
-
-
-
-
-
-
-
 
 
 
