@@ -1,0 +1,101 @@
+---
+title: "Dynamic report"
+output: word_document
+params:
+   optimalTreatment: NA
+   probTreatment1isMax: NA
+   probTreatment2isMax: NA
+   probTreatment3isMax : NA
+   probTreatment4isMax : NA
+   probOptimalTisMax : NA
+   probOptimalTisNotMax : NA
+   expectedOutcomesPerYearoptimalTreatment : NA
+   implementationValueExists : NA
+   uncertaintyInCurrentEvidenceExists : NA
+   popDuringResearch : NA
+   popAfterResearch : NA
+   popTotal : NA
+   listForhistVOIYear : NA
+   valueOfResearchPerYear : NA
+   valueOfImplementationPerYear : NA
+   tableEventsPerYearDF     : NA       
+   tableProbabilityMaxDF : NA
+   tableTreatmentCostsDF : NA
+   Cell_A : NA
+   Cell_C : NA
+   Cell_D : NA
+   maxvalueOfImplementation : NA
+   maxvalueOfResearch : NA
+   healthOpportunityCostsOfResearch : NA
+   valueOfResearchWithCurrentImplementation : NA
+   valueOfResearchWithPerfectImplementation : NA
+   ICER_ResearchWithCurrentImplementation : NA
+   ICER_ResearchWithPerfectImplementation : NA
+   valuePer15KResearchSpend: NA
+   valuePerOpCostResearchSpend : NA
+   absoluteExpectedHealthOutcomesFromResearchProject : NA
+   popDuringFeasResearch       : NA
+   popDuringDefinitiveResearch : NA
+   popAfterDefinitiveResearch : NA
+   expectedCostResearchFunder  : NA      
+   expectedCostHealthSystem   : NA    
+   valueOfCertainResearchWithPerfectImplementation : NA
+  
+  
+  
+  
+---
+
+```{r}
+# The `params` object is available in the document.
+# NB: when adding objects to params list - must set default value in report.Rmd equal to NA
+#params$n
+```
+
+
+
+```{r}
+#plot(rnorm(params$n), rnorm(params$n))
+```
+
+
+
+
+```{r}
+
+params$optimalTreatment
+params$probTreatment1isMax
+params$probTreatment2isMax
+params$probTreatment3isMax 
+params$probTreatment4isMax 
+params$implementationValueExists 
+params$uncertaintyInCurrentEvidenceExists 
+params$listForhistVOIYear 
+params$valueOfResearchPerYear 
+params$tableEventsPerYearDF         
+params$tableProbabilityMaxDF 
+params$tableTreatmentCostsDF 
+params$healthOpportunityCostsOfResearch 
+params$ICER_ResearchWithCurrentImplementation
+params$ICER_ResearchWithPerfectImplementation 
+params$popAfterDefinitiveResearch 
+params$expectedCostResearchFunder     
+params$expectedCostHealthSystem  
+params$valueOfCertainResearchWithPerfectImplementation
+
+if(params$uncertaintyInCurrentEvidenceExists == TRUE){
+  "There is uncertainty in decision"
+} else {
+  "there is no uncertainty in decision"
+}
+
+
+```
+
+
+
+
+
+
+
+
