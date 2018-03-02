@@ -1,0 +1,12 @@
+name: openvoidemotry
+title: OpenVOIdemoTry
+username:
+account: david-p-glynn
+server: shinyapps.io
+hostUrl: https://api.shinyapps.io/v1
+appId: 247666
+bundleId: 1160802
+url: https://david-p-glynn.shinyapps.io/openvoidemotry/
+when: 1515015815.37156
+asMultiple: FALSE
+asStatic: FALSE

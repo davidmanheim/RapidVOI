@@ -1,0 +1,1462 @@
+---
+title: "Application of VOI to 6 NETSCC proposals"
+author: "David Glynn, Claire Rothery, Karl Claxton"
+date: ' '
+output:
+  word_document: default
+  html_document: default
+---
+
+
+
+## Headline points
+
+[like an abstract - complete this last]
+
+* 
+
+
+## Executive summary
+
+(summarise main points from entire document - should reflect document structure -  complete last)
+
+**How to think of VOI methods**
+
+* Provided with a diverse range of proposals which has enabled us to get a broad overview of the decisions faced by NETSCC.
+
+* There are complex judgemnts required to understand the health impact of research proposals. In many cases there are important aspects of the research which are omitted from proposals. These aspects (such as treatment costs) will have an important impact on population health.
+
+* Value of information (VOI) methods are a means of estimating the health impact of research proposals. It is not possible or desirable to try to incoprporate the necessary ethical judgements into a mathematical model. The best a quantitative method can do is to give decision makers an idea of the health impact of different research proposals. This information can then be used to understand the relative trade-offs made when prioritisaing one research proposal over another.
+
+
+
+
+This data is needed to understand the health impacts of research proposals
+
+
+
+No quantitative analysis can capture all aspects of scientific and social value judgements. The relevant question is whether they offer a practical and useful starting point for deliberation and add to the transparency and accountability of decision making.
+
+
+**Opportunity costs**
+
+Not just the what research could have been funded.
+
+What a QALY is and why should you care?
+
+
+**Absence of epidemiological evidence**
+
+When attempting to guage the health impact of research proposals a judgement about the likely effects that a trial will report is required. This is because 
+
+Currently developing methods to handle this ; 
+
+and to handle combination therapies when we believe there to be interation effects.
+
+**Other core data not included**
+
+Treatment costs. This is infomration should be included in calculation of "Estimated NHS support and treatment costs" so inclusion of this will not increase burden on applicants.
+
+Current utilisation rates
+
+The health impact of research is strongly influnced by the number of people affected each year and so incidence is an important consideration. 
+
+Estimates for incidence were relatively easy to find online but require some care in defining the population of interest. 
+
+**Special types of research proposals**
+
+Feasibility trial:
+If a feasibility trial does not lead to a definitive trial then the cost of the feasibiltiy trial is lost. On the other hand if the definitive trial is posssible the health system can benefit.
+
+box on the extra information required
+
+VOI provides a coherent framework for thinking about the benefit of feasibility trials and makes clear the information required to understand their impact on population health.
+
+Complex adaptive trials: box on the extra information required
+
+**Resources for VOI analysis**
+
+how hard / easy to do analysis/ find data
+
+**Policy implications**
+
+VOI provides a common language for policy debates - NICE comissioning
+
+**Summary of research proposal results**
+
+X was found to be the highest value for money for NETSCC
+
+X out of 6 were estimated to be more effective at producing health than standard NHS expenditure.
+
+
+
+
+## Contents page (Overview of document)
+
+* Refresher on VOI methods for research prioritisation
+* Core data requirements to estimate health impact of research
+* What we have observed in the 6 NETSCC proposals
+* Practical route to getting the analysis done (inlcuding guidance for analysts)
+* Making decisions with the results of the analysis
+* Details of analysis for each of the 6 proposals
+
+
+
+## Introduction to value of information analysis
+
+... emphasise estimating health impact rather than VOI ??? VOI as a means to an end
+
+see page 80 of blue book for discussion and Claires slides (see email: "important figure")
+
+Value of information (VOI) analysis can be used to inform a range of policy questions including i) whether a new intervention should be approved based on its existing evidence; ii) whether additional research should be conducted to support the use of the intervention; and iii) whether use of the intervention should be withheld until further research establishes value. The methods can also be used to inform research prioritisation and commissioning decisions and even research design.
+
+Research prioritisation decisions require an assessment of the potential value of future research in terms of its expected health benefits to the health system. Research also consumes valuable resources which could be devoted to patient care or to other more valuable research priorities. Therefore commissioning research involves making prioritisation decisions across a number of diverse clinical areas. A quantitative assessment of the potential benefits of acquiring further evidence will depend on whether the expected benefits of research for a particular intervention are likely to exceed the costs and how this value compares to other research topics competing for the same resources.
+
+... explain opportunity cost more here
+
+Establishing the potential benefits of new research requires a number of considerations; some of which represent value judgements, while others represent scientific beliefs about the evidence to date. Value judgements are made when more weight is placed on a particular outcome compared with another, while scientific beliefs are reasonably held views about a particular state of the world and the degree of uncertainty or knowledge. Decision analytic modelling allows us to bring together these different judgements and beliefs into a structured decision problem, which can be used to explore the implications of alternative assumptions or judgements. For example a simple decision model may be used to combine estimates of treatment effect, baseline risk, and population size in order to establish the magnitude of likely health effects in a target population. However, it is unlikely that the input values are known with certainty and there may be different beliefs about the values. The decision model allows the consequences of alternative values or beliefs to be explored in order to see the implications for the decision and subsequent health.
+
+Value of information (VOI) is a type of decision model which handles the value of reducing uncertainty in the decision. Only the consequences of uncertainty that will change the decision are important. For example, uncertainty about the estimate of treatment effect (e.g. central estimate of effectiveness within a range of plausible values - confidence interval) only matters in so far as it influences the decision. If the decision is the same for all plausible values of the treatment effect then the uncertainty in this parameter is unimportant.
+
+
+...below could be improved...
+
+For every clinical decision there is a chance being wrong about the best treatment. Sometimes the consequnces of being wrong are quite small. In other situations the consequnces of being wrong are very large. It is in this second situation with large consequnces of being worong that the value of information will be high.
+Uncertainty in the decision arises from the range of plausible values that each of the parameters can take. When the range of plausible values for a particular parameter such as the relative treatment effect can support more than one intervention (e.g. the confidence interval (CI) for the estimate of relative effect crosses the line of no difference) this uncertainty has consequences for health outcomes. This is because for any treatment choice there is a chance that another alternative intervention could have improved health outcomes to a greater extent. The importance of this uncertainty is indicated by the scale of these health consequences. The chance that an intervention is not the most effective, how much less effective it is likely to be and the size of the patient population facing the uncertain treatment choice all contribute to the health consequences of this uncertainty.
+
+As an example, consider the evidence on the use of corticosteroids following traumatic brain injury (TBI) before the large definitive trial of CRASH. Before CRASH, a meta-analysis of 19 randomised controlled trials indicated that the effects of corticosteroids (CS) on death and disability were unclear. The odds ratio for death was 0.93 in favour of the use of CS but with 95% CI 0.71 to 1.18. This uncertainty means that every decision about the use of CS following TBI had a chance of being â€˜wrongâ€™. In this case, there was a 74% chance that CS were effective and improved survival. However, there was a 26% chance that CS resulted in excess deaths per annum. This chance can be translated into the consequences for patient outcomes, i.e. number of expected deaths per annum due to uncertainty, by combining the uncertain relative effect with an estimate of the baseline risk (derived from the control arms of the trials or from an alternative source) and multiplying by the incidence of TBI per year. A distribution of the health consequences in number of deaths per annum is derived. There is a smaller likelihood of a large number of excess deaths (e.g. 7% chance of greater than 200 deaths per year) and a greater likelihood of a small number of excess deaths (e.g. 19% chance of greater than zero and â‰¤ 200 deaths per year). This distribution arises because we are more likely to generate an odds ratio closer to 0.93 and less likely to generate one close to the upper bound of 1.18. The average over this distribution gives us the expected (average) number of deaths per annum due to uncertainty in the use of CS following TBI, which was 40 additional deaths per year. This value represents the maximum expected health benefits that could be gained if the uncertainty about the effectiveness of CS were resolved completely, i.e. it represents an upper bound on the value of additional evidence to resolve this uncertainty.
+
+The VOI approach allows us to quantify the consequences in terms of patient outcomes of the uncertainty in the existing evidence. Some treatment decisions will be associated with large uncertainty with large health consequences, while others will have large uncertainty but with relatively modest consequences. Some decisions will be associated with modest uncertainty but with very important health consequences, while others will have small uncertainty with modest consequences. By quantifying the value of conducting further research in this way, the value can then be compared to the opportunity cost of conducting research (e.g. the health outcomes that could be gained elsewhere from the resources used to fund the research) to provide a necessary condition for a decision on whether to conduct the research.
+
+
+**Full VOI versus rapid VOI analysis**
+
+2.1 VOI analysis has traditionally been used within a net benefit framework to assess the uncertainty surrounding the decision to adopt a health technology into the health system. This requires the construction of an economic evaluation model which brings together all the relevant evidence on both short and long-term costs and health outcomes for the intervention and comparators and facilitates the synthesis of data from a variety of sources
+
+to assess the cost-effectiveness of the intervention under consideration. All decisions about the cost-effectiveness of interventions are based on uncertain information about clinical effects, health-related quality of life and resource use. This uncertainty can be reflected in probabilistic distributions assigned to each of the parameter inputs. The uncertainty is then propagated through the model to assess the uncertainty in the surrounding cost-effectiveness results. At this latter stage VOI analysis can be used to assess the need for further research. The value of additional research is based on the extent to which further research will reduce the decision uncertainty. This could be described as a full VOI analysis. There is nothing particularly challenging about the VOI methods themselves but used in this way requires a structured decision problem, synthesis of evidence, consideration of the full pathway of costs and outcomes and characterisation of uncertainty (required for estimation of costs and effects as well as VOI). The time and resources required to complete this task can take several months as evidenced by the NICE process.
+
+Recently Claxton et al (2015a) showed how VOI methods could allow for rapid estimation of the value of further research without the need for constructing a complex and expensive economic model. This places the use of VOI on a spectrum from rapid VOI models requiring judgements by decision makers (which we will call rapid VOI analysis) to more complex and time consuming models which explicitly model the full pathway of short and long term effects (full VOI analysis).
+
+Rapid VOI takes the most important estimate of relative treatment effect as its starting point and uses it to understand the consequences of uncertainty. This does not mean that other outcomes are unimportant, but it simply places the focus on the primary outcome of effectiveness and establishes the value of reducing uncertainty in that outcome. This is exactly what was described above in relation to the evidence before the CRASH trial. The value of additional evidence was described in terms of the number of deaths averted per annum, for the primary outcome of mortality.
+
+In situations where a number of other outcomes are important (e.g. adverse events, quality of life impacts, costs) that are not captured in the primary outcome, we can specify a minimum clinical difference in effectiveness that would need to be detected in further research, i.e. larger differences in effectiveness might be required before there is confidence that health outcomes will be improved. Requiring that further research must demonstrate larger differences in effect will tend to reduce its value because large differences are less likely to be observed than smaller ones.
+
+Alternatively, other outcomes can be linked to external sources of evidence. For example, the impact of TBI on disability and subsequent survival can be quantified by establishing the link between risk of disability and subsequent life expectancy and quality of life (i.e. placing the analysis somewhere on the spectrum between rapid and full VOI). The value of further research is then expressed in terms of quality-adjusted life years (QALYs).
+
+Establishing an estimate of treatment effectiveness is standard practice; therefore the time required to gather the evidence to inform a rapid VOI analysis is not expected to take long. However, the more information put into the analysis the more useful the results will be but with a trade-off on the time and resources required. One key advantage of rapid-VOI is the
+
+ability to quickly explore the implications on the results of alternative beliefs or judgements. For example, since the calculations can be computed relatively quickly it allows decision makers to explore different scenarios as part of a deliberative process.
+
+**The role of value of information analysis in decision making**
+
+Despite the advantages of either full or rapid VOI it is important to note that no quantitative analysis, no matter how assiduously conducted or sophisticated, can capture all aspects of scientific and social value relevant to decisions about research priorities. Not least because both scientific and social value judgements are quite reasonably disputed. The more relevant question is whether they offer a practical and useful starting point for deliberation and add to the transparency and accountability of the decision making process.
+
+Estimates of the potential value of future research in terms of its expected health benefits start to indicate its relative priority compared to other areas of research. Whether the costs of research are justified by their potential health benefits can be addressed by examining whether those resources might generate similar, or greater, expected health benefits elsewhere (e.g. other research topics or priorities), or towards service provision. For example, recent research suggests that it costs the NHS Â£114,000 to avert one death, Â£25,000 to gain one life year and Â£13,000 to gain one QALY (Claxton et al, 2015b). This allows research proposals that are likely to be worthwhile to be identified and those that are likely to offer the greatest value to be commissioned from the available research funds.
+
+Research prioritisation decisions require an assessment of the expected health benefits of research before the actual results that will be reported in the future are known. Therefore, it might seem intuitive to look back and ask whether a particular research prioritisation decision was correct based on the results of the research. However, this use of hindsight is inappropriate because the findings of the research represent only one realisation of the uncertainty that could have been found when the decision to prioritise and commission research was taken. For example, consider the CRASH trial. The expected health benefits of conducting the trial based on the evidence prior to CRASH was estimated at Â£1,600 per death averted. Given that the NHS spends around Â£114,000 to avert one death, this suggests that the CRASH trial was worthwhile. As it turns out, the trial was worthwhile to avoid unnecessary deaths with a definitive finding that CS increase the risk of death following TBI. However, it would be inappropriate to say whether the Medical Research Council made the â€˜rightâ€™ decision to commission CRASH in the year 2000. This is because i) we donâ€™t know the value of the other research proposals which were on the table for consideration on the day that CRASH was funded; ii) the actual findings of the CRASH trial represent only one realisation of the uncertainty that could have been found when the decision to prioritise and commission research was taken (the uncertainty at the time that CRASH was funded also indicated that the trial might save lives); and iii) the true value of CRASH is only realised if CS were being used in clinical practice before CRASH, i.e. if CS were not being used in practice before CRASH then the value of the trial was effectively zero because it would not have changed clinical practice.
+
+
+
+
+---
+
+**Summary box: Introduction to value of information analysis]**
+
+*
+*
+*
+
+---
+
+
+
+## Core data requirements to estimate health impact of research
+
+In order to estimate the health impact of a research proposal it is necessary either implicitly or explicitly create a model of the clinical decision and how the research will affect decisions made in the health system. Here we have tried to strip down this model to its most basic components. If these inputs (or very similar inputs) are not included in a proposal it is not possible to form a model of how the research will affect practice.
+
+The first nine inputs below must be tailored with reference to the individual proposals and so must either be specified in research proposals. The final two inputs should be common across proposals and so are set by the decision maker, in this case NETSCC.
+
+In addition to these core inputs some proposals such as proposals for complex adaptive trials require more inputs in order to reflect the fact that they have more moving parts. This will be discussed later in the document.
+
+**Primary outcome measure**
+
+The primary outcome measure or endpoint captures the most important aspects of health outcome. Clinical trials are commonly powered and statistically designed to detect differences in the primary outcome. The value of additional research can be expressed in terms of â€˜benefits gainedâ€™ or â€˜harms avoidedâ€™ depending on whether the primary outcome is a benefit or harm. 
+
+There are often other important aspects of clinical outcome that are not captured in the primary outcome e.g. side effects, it is possible to specify a minimum clinical difference (MCD) in effect to implicitly account for these other unquantified aspects of clinical outcome.
+
+It should be noted that in addition to clinical outcomes, costs are also important as increased costs in one part of the health system can have effects on the health of those in other parts of the health system. These costs can be accounted for using basic economic modelling as shown in the analysis of proposals.
+
+**Minimum clinical difference (MCD) in outcomes**
+
+As stated above are often other important aspects of clinical outcome that are not captured in the primary outcome e.g. side effects. Specifying a minimum clinical difference (MCD) in outcomes that is required to make up for increased side effects is one way to incorporate these clinical concerns without building a complex economic model.
+
+For example, in proposal 1 there is a choice between talking therapy and antispsycotics in the treatment of psycosis. As there are more side effects associated with antipsycotics they must show superiority on the primary outcome in order for them to be equivalent to talking therapy. 
+
+**Treatment effectiveness**
+
+Normally binary outcome, uncertain about the % of patinets who get some benefit... baseline + relative effect
+... alternatively (such as in proposal 2) just directly specify probability of "success" 
+... in principal it is alos possible if there is a continuous outcome (not used for any proposal here)...
+
+
+Relative treatment effectiveness:
+
+An estimate of the relative effectiveness of the intervention is required for the primary outcome, along with an estimate of its uncertainty. This is usually expressed in terms of an odds ratio or relative risk, with a 95% confidence interval. This estimate is usually obtained from a standard meta-analysis. However, if the estimate is unavailable or considered inadequate, alternative values can be used to represent different judgements about the uncertain relative treatment effect.
+
+Baseline event rate:
+
+An estimate of the baseline event rate in the absence of the intervention is required i.e. how often the primary outcome occurs with standrd care. This is used to obtain an estimate of the absolute effect of the intervention on the primary outcome by applying the relative measure of effect to the baseline risk. This can be informed by the event rate in the control arms of the trials in the meta-analysis informing the relative treatment effect or, alternatively, from external evidence or judgements relevant to the target population.
+
+**Incidence per annum**
+
+An estimate of the number of individuals facing the uncertain choice between alternative interventions is required in order to establish the size of the benefits to the target population.
+
+**Costs of the proposed study**
+
+Some assessment of the likely costs of the proposed study is required to establish whether the expected benefits from the study are sufficient to justify the expected costs. 
+
+From the proposals it appears that there are two types of research costs: those that fall on NETSCC's budget and those that fall on the general NHS budget. 
+
+It can also be used to establish whether the proposed study represents a priority compared to other research that could be commissioned using the same resources.
+
+**Current level of utilisation of the interventions**
+
+...Research proposals can improve health outcomes in two distinct ways: generating information about which treatment creates more health (information value) and changing clinical practice so that the health system provides what looks like the best treatment (implementation value).
+
+Some estimate of the current level of utilisation of the interventions in clinical practice is required to establish the value of changing practice if the results of new research suggest a change. It can also be used to establish whether there is greater value from encouraging the implementation of what existing evidence suggests is the most effective intervention than from conducting a new research study.
+
+
+
+**Duration of the proposed study**
+
+Some judgement about how long it will take the results of the research to report is required since the value of research declines the longer it takes to report. This might be informed by an assessment of sample size, recruitment rates, and historical experience of conducting similar types of studies.
+
+**Length of time (years) for which the new evidence would be valuable**
+
+The information generated by new research will not be valuable indefinitely because other changes occur over time. For example, over time new and more effective interventions become available which will eventually make those currently available obsolete. This means that new information about effectiveness is only relevant for a specific amount of time. Some judgement about the length of time that the proposed research might be valuable for must be made to anticipate its health impact. This could be informed by historical evidence and judgements about whether a particular area is likely to see future innovations or other evaluative research.
+
+### Inputs common across NETSCC proposals
+
+The final two inputs should not vary between proposals, they should be common accross all proposals. These inputs take particular values and should respect consistency and the empirical evidence. They may be updated over time as new data comes to light.
+
+**Discount rate**
+
+When a time horizon greater than one year is considered in the analysis, discounting should be used to reflect the fact that resources committed today could be invested at a real rate of return or paying off debts to free up more resources in the future. Guidance from the UK Treasury suggests the use of a discount rate of 3.5% per annum.
+
+**Opportunity cost of health expenditure**
+
+As noted above increased costs in one part of the health system can have effects on the health of those in other parts of the health system. Recent research has estimated this effect and the value of Â£15,000/QALY been officially adopted by the UK Department of Health in making resource allocation decisions (Reference...).
+
+This means that for every Â£15,000 of NHS money the health system can expect to produce 1 QALY. This means that if a project costs Â£30,000 and produeces 1 QALY then it produces less health than the healht system does normally and so results in health opportunity cost.
+
+---
+
+**[Summary box for Core data requirements to estimate health impact of research]**
+
+---
+
+
+
+## What we have observed from the 6 NETSCC proposals
+
+Below are the main lessons we have learned from analysing the six proposals provided by NETSCC. The diversity and limitations of the proposal set stimulated methods develpment on our part and guidance has been provided where possible to facilitate consistent analysis of a wide range of proposals based on the best available evidence given the resouce constraints. Related to this aspects of public policy and the interaction between NETSCC and other resource allocation bodies such as NICE have been discussed
+
+(emphasise estimating health impact - not VOI)
+
+**Uncertainty about treatment effects not reported**
+
+As discussed previously it is not possible to get an estimate of the health impact of researc without the core inputs. Relative effectivness is one core input which is often missing from proposals. This may be because this data does not exist or it is just not reported in the proposal in an explicit manner.
+
+This parameter reflects the uncertainty about the relative effect of a treatment before the trial is comissioned, for example...
+
+In order to prioritise a particular proposal, some view about this parameter must be taken either implicitly or explicitly... 
+
+The approach taken here is to apply a standard "very uncertain" value when a meta analysis on the primary outcome is not reported. Statisticaly, this is a normally distributed log odds ratio with mean zero and standard deviation of 0.5. It is possible to utilise the results of previous clincial trials to provide an empirical grounding for this value and work on this is ongoing.
+
+In some cases e.g. proposal 2 (Alzheimer's) and proposal 3 (Oncology) this standard "very uncertain" value is inappropriate...
+
+
+**Key aspects of the decision are not explicitly described**
+
+Costs and incidence
+
+How fast the area moves and whether new treatments might come along
+
+
+
+**MCD and the trade offs between outcomes**
+
+use MCD to trade off between primary and secondary outcomes
+
+Done implicitly by clinical experts when deciding if a treatments effect on one outcome is worth the increased side effects.
+
+In principal this could be done by eliciting from patients or clinical experts.
+
+An MCD is set in a number of the proposals... it is unclear what this is intended to represent... costs , health tradeoffs etc? If costs are condidered then these can imply quite extreme tradeoffs being made by the clinicians setting the MCD... e.g. melanoma, proposal 6.
+
+
+**Special types of studies which require additional inputs**
+
+We have provided a set of "core inputs" which are required to estimate the health impact of a research proposal. Some proposals describe special trials which require additional inputs, two of these special trials were encountered in this set of proposals; feasibility trials (proposal 1) and complex adaptive trials (proposal 2). The additional data requirements are listed below:
+
+Input requirements for feasibility trials:
+
+* Duration of feasibility trial
+* Costs of feasibility trial
+* All core data requirements for the planned definitive trial
+* Liklihood of the feasibility trial leading to a definitive trial
+
+Input requirements for complex adaptive trials
+
+* Decision rules for removing and adding arms
+* Decision rule for ending trial
+* Cost of continuing arms
+* Cost of adding new arms
+* Uncertainty about the effectiveness of new treatments which can be added
+
+There may be other types of trial design which require special treatment and so input requirements should be thought about proactively and communicated to researchers.
+
+As demonstrated in the analysis of proposal 2 it is an option for NETSCC to ignore the option to add arms a complex adaptive trial and treat it as a normal trial. This will potentially underestimate the value of the trial and so the results must be interpreted with caution.
+
+**Distinction between information value and implementation value of research**
+
+[very important to interpret results - more emphasis in introduction section, relates to discussion below about NICE]
+
+
+
+**Connection between NICE and NETSCC policy**
+
+Melanoma and Eculizumab
+
+
+**NETSCC prioritisation and the level of NHS research expenditure**
+
+Two questions: 
+
+* What prioritity should different proposals be given? Depends on what is on the table
+* Which of these proposals should the NHS fund?
+
+**Reflecting and communicating uncertainty**
+
+Assumptions need to be made in order to address the question of interest, namely; what is the likely health impact of each research proposal?
+
+Due to the complexity of this question, the limited time available to produce each analysis and the limited decision maker time within the NETSCC process we chose to focus on what we consider the key areas of uncertainty:
+
+* Incidence 
+* The time the information is useful for
+* The net health impact of the primary outcome 
+* Time the research takes to report
+* Cost of the research 
+
+For each of these areas the analyst must specify a "pesimistic", "best guess" and "optimistic" value. In the interest of comparability, simplicity and keeping analysis time low it is suggested that each base case value is increased or decreased by 20%. Many of the inputs into the analysis have unambiguous effects on the value of research. In constructing the optimistic scenario some inputs will need to be increased and others decreased depending on how the input affects the value of the research For example increasing the incidence will always increase the value of the research as it affects more people. However, decreaseing research costs will always increase the value of research and so these should be reduced by 20% in the optimistic scenario. More detail on this is provided in the guidance for analysts section.
+
+<!-- an additional reason for choosing these is that they have unambigous effects on the value of additional informaiton. the uncertainty in the relative effect has an ambiguous effect for example  - this has been omitted as it is not clear how "opimistic" "pesimistic" scenarios could be constructed (may be included in a more general sensitivity analysis) -->
+
+<!-- [Guidance on how to reflect this uncertainty in a manner which makes the proposals comparable is provided in the guidance for analysts section.] -->
+
+**Inconsistency in some proposals**
+
+
+---
+
+**[Summary box for What we have learnt from the 6 NETSCC proposals]**
+
+---
+
+
+
+## Getting the health impact analysis done
+
+How difficult it is to do
+
+How long it took
+
+Who should do it
+
+
+The most difficult aspects of completing the analysis was the development of novel methods to handle the diverse set of researh proposals. 
+
+
+Many of the required inputs for the proposals were not reported and so values were provided for illustrative purposes. These judgements should be informed by experience in the clinical area and any process for utilising these methods must allow for access to and involvement of topic experts.
+
+
+### Reference case for analysis
+
+**1) blah **
+
+**2) Map from MCD to QALYs... **
+
+**3) Reflecting uncertainty...**
+
+As discussed above under reflecting and communicating uncertainty we chose to focus on what we consider the key areas of uncertainty:
+
+* Incidence 
+* The time the information is useful for
+* The net health impact of the primary outcome (Translating the primary outcome to costs and QALYs)
+* Time the research takes to report
+* Cost of the research 
+
+For each of these areas the analyst must specify a "pesimistic", "best guess" and "optimistic" value. To facilitate comparsion across studies we suggest that...
+
+Table: optimistic +20%/-20%/*20%
+* Incidence
+* The time the information is useful for
+* The net health impact of the primary outcome (Translating the primary outcome to costs and QALYs) 
+* Time the research takes to report
+* Cost of the research 
+
+Justify why:
+For net health impact it is the absolute value that matters and so just multiply it.
+
+
+Further work:
+It is also possible and desiable to take accont of the level of implementation after the trial result. Future analysis will take this into account
+
+
+## Making decisions with the analysis
+
+In this section we take the results of the analsis carried out and demonstrate what decision making might look like if these six proposals were on the table and we only had enough money to comission half of them at most. Full details of the analysis for each proposal are reported in the next section.
+
+Again we would like to emphasis that no quantitative measure can capture all aspects of value and that this assessment is one input into a wider process. For this analysis we simply illustrate a method of decison making in which only health matters and health impact is considered to be reasonably well captured by the analysis.
+
+An additional caveat is that many of the required inputs for the proposals were not reported and so values were provided for illustrative purposes. These judgements should be informed by experience in the clinical area.
+
+NETSCC would prioritise in order of ICERs (this does not take account of the fact that there may be important considerations other than health impact which should be taken account of)
+
+NHS would fund all those that look to be green
+
+[insert Tony Culyers bookshelf here? could include traffic light colours and maybe implementation (dark colour) vs information values(lighter colour)]
+
+
+[to construct Culyer book shelf - with negative component]
+[order in terms of ICER]
+
+Proposal 1 Base case: 
+NHE: -15.73 QALYs
+Expected NETSCC cost: £1,851,480
+NETSCC ICER: -£117,726 per QALY (negative ICER -> bad interpretation)
+Percentage of total NHE information value: 100%
+
+Proposal 2 Base case: 
+NHE: 772 QALYs
+Expected NETSCC cost: £3,310,883
+NETSCC ICER: £4,287 per QALY 
+Percentage of total NHE information value: %100
+
+Proposal 3 Base case: 
+NHE:  QALYs
+Expected NETSCC cost: £
+NETSCC ICER: -£ per QALY 
+Percentage of total NHE information value: %
+
+Proposal 4 Base case: 
+NHE:  QALYs
+Expected NETSCC cost: £
+NETSCC ICER: -£ per QALY 
+Percentage of total NHE information value: %
+
+Proposal 5 Base case: 
+NHE:  QALYs
+Expected NETSCC cost: £
+NETSCC ICER: -£ per QALY 
+Percentage of total NHE information value: %
+
+Proposal 6 Base case: 
+NHE:  QALYs
+Expected NETSCC cost: £
+NETSCC ICER: -£ per QALY 
+Percentage of total NHE information value: %
+
+
+## Estimating health impact of proposals
+
+* **Proposal 1:** First episode psychosis feasibility trial
+* **Proposal 2:** Alzheimer's multi arm adaptive trial
+* **Proposal 3:** Metastatic melanoma discontinuation trial
+* **Proposal 4:** Educational booklet preferred place of death
+* **Proposal 5:** Timing treatment in traumatic brain injury
+* **Proposal 6:** Eculizumab withdrawal in rare disease 
+
+
+### Proposal 1: Feasibility RCT for first episode psychosis in children and young people
+
+
+---
+
+**Proposal 1 summary**
+
+**Research question:** Is it possible to carry out a definitive trial of FEP treatment in children and young people (aged 14-18)?
+
+**Intervention:** Talking therapy (using CBT and family therapy)
+                      Combination of antipsychotics and talking therapy
+
+**Control:** Antipsychotics (APs) as monotherapy
+
+**Primary outcome:** Feasibility of definitive RCT
+
+**Proposed study:** 3 arm feasibility study (n = 90)
+
+**Duration of study:** 2 years
+
+**Costs of study to NETSCC:** Â£600,000
+
+**NHS support and treatment costs:** Â£150,000
+
+---
+
+#### Proposal 1 headline results and overview
+
+**Traffic lights** 
+
+(red) Pesimistic scenario: Research has negative health impact
+(red) Base case: Research has negative health impact
+(red) Optimistic scenario: NETSCC ICER of £63,423 per QALY
+
+**Summary of trial results**
+
+In the base case the trial resulted in a net health loss of 15.72 QALYs with an expected cost of £1.85 million to NETSCC. According to this analysis, funding the trial would result in a net health loss and so this appears to represent very poor value for NETSCC money.
+
+The research is estimated to result in a net healht loss as in most of the likely scenarios the current treatment is more cost effective due to its lower yearly costs (£687 for antipsycotics vs £1,746 and £2,433 for the other treatments).
+
+
+**Summary of analysis**
+
+In this proposal the researchers are asking NETSCC for £600,000 of public money to fund a feasibility trial. In order to estimate the health impact of this feasibility study we need to think about how this will affect clinical decision making. Here we assume that the feasibility trial will only affect health care decisions if it leads to a definitive trial. For this reason, in order to value this proposal we need to have a model of the definitive trial and its health impact. To do this we use a two step process:
+
+* Step 1: Assume the definitive trial is possible and calculate its value using standard VOI methods.
+* Step 2: Adjust the health impact of the potential definitive trial for fact that it may not be possible.
+
+If the feasibility study is carried out at a cost of £600,000 and it turns out that the definitive trial is not possible then this project will not have effected practice and the money will have been wasted. However if the definitive trial can be carried out then the estimated benefits of the trial will be realised.
+
+
+**Key assumptions and drivers of results**
+
+* The uncertainty in the relative effect was not reporeted so we assumed the standard "very uncertain" value for both talking therapy and combination therapy. Statisticaly, this is a normally distributed log odds ratio with mean zero and standard deviation of 0.5.
+* As the probability of relapse within one year for antipsycotics appears to be around 40% the "very uncertain" value implies that the new treatments are likely to result a relapse rate between 20% and 60%.
+* As discussed previously this value requires empirical justification. Additionally, in this context it implies that the we consider the combination no more or less likely to work than either of the individual treatments.
+* Some informed veiw about the cance of the definitive trial occuring is required, for illustrative purposes we assumed a 50% chance of definitive trial occuring as a result of the pilot.
+* As no information on the definitive trial was provided, we needed to assume values for each of the imputs. For illustrative purposes these have been based on comparable trials in the proposal set where possible.
+* In translating primary outcome to costs and QALYs, we only consider differences in costs and outcomes over the 12 months the patient is part of the trial as it is very unclear how the patients will develop long term and how this depends on treatment. This is an important limitation of the analysis (Sculpher, 2006) as long term effects on costs and outcomes will not be captured, however reflecting this would require much more sophisticated modelling. 
+* Cost and utility values are taken from NICE guideline on psychosis and schizophrenia in adults, these may be different for first episode psychosis in children and young people.
+* Expert optinion was not available to make judgement between risk of relapse and additional side effects. This has to be assumed by the analyst for illustrative purposes.
+
+
+**Information required but not included in the proposal**
+
+Research only impacts health in so far as it changes clinical practice. This is a small feasibility trial (n=90) and so is unlikely to change practice on its own, therefore it only really influences population health through a future definitive trial. The proposal contained very little quantitative information on the potential definitive trial and so estimates and assumptions were used for illustrative purposes. The list of inputs required but not included in this proposal is given below:
+
+
+* Definitive trial primary outcome measure
+* Definitive trial minimum clinical difference (MCD) in outcomes
+* Duration of the proposed definitive trial
+* Current information on relative treatment effectiveness
+* Current information on baseline event rate
+* Incidence per annum
+* Research costs of the definitive trial (both NHS and NETSCC)
+* Current level of utilisation of the interventions
+* Length of time (years) for which the new evidence would be valuable
+
+
+
+#### Proposal 1: full details of analysis
+
+**Approach to analysis**
+
+Research only impacts health in so far as it changes clinical practice. This is a small feasibility trial (n=90) and is unlikely to change practice on its own, therefore it only really influences population health through a future definitive trial. If it turns out this definitive trial is not possible then the health system gets nothing i.e. the Â£600K in NETSCC costs will not produce any health benefit.
+
+For this reason information on the future definitive trial essential to value feasibility trial and so this information is required if researchers wish to claim health care funds.
+
+As infomration on the future definitive trial is not included in the proposal we need assumptions about it for illustrative purposes. The infomration required on the future definitive trial is:
+
+* Primary outcome in the trial
+* Uncertainty in this primary outcome 
+* Trial duration 
+* Trial cost
+
+The reason the feasibility trial must be done is that the researchers are unsure about whether the definitive trial is possible. If the trial cannot be done the Â£600,000 for this feasibility trial will be wasted (sunk cost). This means that understanding the health impact of a feasibility study requires an informed judgement about the liklihood of the feasibility trial leading to a definitive trial. This information is not included in the proposal and so data for illustrative purposes is provided.
+
+Feasibility trials are modelled in two stages:
+
+* Step 1: Assume the definitive trial is possible and calculate its value using standard VOI methods.
+* Step 2: Adjust the health impact of the potential definitive trial for fact that it may not be possible. 
+
+The core data requirements are required to estimate the health impact of any study. In this case we require them for the planned definitive trial. As much of this data is not inlcuded in the proposals we demonstrate values for illustrative purposes. This data is not very difficult to find and if researchers claim that their feasibility study is worth Â£600,000 in health funds then they must detail how the future research will benefit patients.
+
+---
+
+**Core data for potential future trial**
+
+* **Primary outcome measure**: [not reported] Relapse at 12 months defined according to Positive and Negative Symptoms Scale (PANSS). Chosen as PANSS used as outcome in feasibility study and relpase appears to be a common primary outcome in psychosis studies.
+* **Minimum clinical difference (MCD) in outcomes**: [not reported] Discussed later
+* **Relative treatment effectiveness**: [not reported] mean OR = 1 and standard error = 0.5 on log odds scale for both talking therapy and the combination. Chosen as this is the common assumption made when there is no data on a new intervention.
+* **Baseline event rate**: [not reported] 37%, 17 relapses out of 46 patients at 12 months on treatment as usual (pooled Edwards, 2005 and Jackson, 2005)
+* **Incidence per annum**: [not reported] 5939 cases for 16-35 year olds (Kirkbride, 2013). This means roughly 313 cases across each age group (5939/19). Incidence for 14-18 year olds = 1563 (5 x 313). This assumes constant incidence across age groups.
+* **Costs of the proposed study**: [not reported] Assumed costs to be similar to proposal 3 which costs Â£2.5M. The research costs imposed on the NHS are assumed to similar to proposal 5 with costs of Â£490,000.
+* **Current level of utilisation of the interventions**: [not reported] Assume that all recieve antipsycotics
+* **Duration of the proposed study**: [not reported] Assumed to be similar to proposals 3 and 5 with average length 6 years
+* **Length of time (years) for which the new evidence would be valuable**: [not reported] Assume area moves relatively slowly, 15 years
+* **Discount rate**: 3.5% (UK Treasury...). Common across proposals.
+* **Opportunity cost of health expenditure**: Â£15,000/QALY (Department of Health...). Common across proposals.
+
+---
+
+<!-- Note that meta analysis of interventions does exist for FEP https://academic.oup.com/schizophreniabulletin/article-lookup/doi/10.1093/schbul/sbp129 -->
+
+**Current evidence**
+
+From the data above we expect 578 people to relapse each year given the current treatment (37% of 1563). As we have assumed that we are very uncertain about whether the new treatments are better and so would expect a similar number of events if these treatments were used. However we are very uncertain about how good or bad these treatments are and have assumed that they are likely be associated with relapse rates somewhere between 20% and 60% (compared to 37% for the current treatment)
+
+**Step 1: The value of the proposed definitive trial (only considering primary outcome)**
+
+If only the uncertainty in the primary outcome is considered there is considerable uncertainty about which of the three treatments will result in the fewest relapses. A value of information analysis calculates that the trial would be worth 110 relapses prevented each year.
+
+To get an idea of the uppper bound on the value of this proposal we calculate the value If the pilot could be skipped, the definitive trial could definitely be run and the definitive trial reported immediately. This research would be worth: 1,285 relapses prevented. 
+
+This implies a NETSCC ICER of £1,945 per relapse prevented. Note this does not incorporate the assumed additional research costs of £450,000 imposed on the NHS budget.
+
+**Step 2: The value of the pilot study (only considering primary outcome)**
+
+Still only considering uncertainty in the primary outcome we adjust the value of the proposal for the fact that the pilot study will take 2 years to report and will cost £600,000 and the definitive trial only has a 50% chance of happening, will cost Â£2.5M and is expected to take 6 years to report.
+
+Taking account of this means that in all simulations we pay the £600,000 for the pilot study but only in some of those simulations does the definitive trial actually go ahead. As there is a 50% chance that the definitive trial will not happen the expected cost to NETSCC is the cost of the pilot study + 50% of the cost of the definitive trial (£600K + 0.5(£2.5M) = £1.85M).
+
+This research would be worth 258 relapses prevented. With an associated NETSCC ICER of £7,165 per relapse prevented. Again this does not incorporate the assumed additional research costs of £375,000 imposed on the NHS budget. These NHS costs again adjust for the fact that the NHS costs associated with the definitive trial (£490,000) are not always incurred but the NHS costs associated with the pilot study (£150,000) are always incurred.
+
+
+#### Taking account of more than the primary outcome
+
+As discussed a various places in this document, in many decisions the primary outcome will not capture many of the aspects important to decision making. In addition, in order to compare proposals across disease areas it is necessary to link understand the health impact using a generic measure. To achive this we fist describe how costs and QALYs can be associated with primary outcome and then we describe how other aspects such as side effects can be proxied by the MCD.
+
+**Associating costs and QALYs with the primary outcome **
+
+As described above, the primary outcome is assumed to be relapse at 12 months as defined according to Positive and Negative Symptoms Scale (PANSS). Relapse is associated with worse health and increased health expenditure and this must be at least partially captured in our analysis. Here we only consider differences in costs and outcomes over the 12 months the patient is part of the trial as it is very unclear how the patients will develop long term and how this depends on treatment. This is an important limitation of the analysis (Sculpher, 2006) as long term effects on costs and outcomes will not be captured, however reflecting this would require much more sophisticated modelling. 
+
+It is assumed that if a patient does relapse this happens half way through the trial period (at 6 months), otherwise they remain in remission for the entire 12 months. Costs and utilities associated with relapse and remssion are taken from the NICE guideline on Psychosis and Schizophrenia in adults (2014). The figures used are displayed in the table below:
+
+![](W:/teehta/David G/NETCC/2017/Analysis for NETSCC/Images from proposals/P1outcomeToCostQALY.png)
+
+Comparing relapse to remission, for every additional relapse a patient loses 0.0645 QALYs and costs an additional Â£10,146. As noted, these additional costs will have health impacts elsewhere in the system.
+
+**Treatment costs**
+
+Each treatment is associated with different costs. As the NICE guidance recommends that antipsycotics are choosen based on side effect profile we take the average yearly cost over the range of antipsycotics listed in the NICE guidance, £687. 
+
+The talking therapy is described as up to 30 individual sessions over 6 months, with an extra 6 sessions of family therapy. Assume an average of half the sessions for each will be attended implies 18 sessions in totoal. Based on a cost of £97 per CBT session (PSSRU, 2016) this implies a total cost of £1,746. The combination therapy is assumed to be simply the cost of antipsychotics plus the cost of talking therapy, £2,433 per person.
+
+
+Treatment                   Treatment costs per year    Relapses per year         NHE of relapses     
+-------------------------   ------------------          -----------------         -----------------  
+Antipsychotics              £1.07 million               578
+Talking therapy             £2.73 million               578
+Combination                 £3.8 million                578
+
+
+**Taking account of side effects using the MCD **
+
+Antipsychotics and combination therapy are likely to be associated with more side effects than talking therapy alone but they may result in fewer relapses. As in every clinical decision these additional side effects must be balanced against clinical effectiveness. 
+
+* The current treatment, antipsychotics is associated with 578 relapses per year. This therapy likely results in more side effects than talking therapy. What number of relapses per year for talking therapy would make these treatments equivalent?
+* [not reported] Suppose that due to the reduced side effects a 7% increase in relpse rate would be acceptable for talking therapy. This imples that 619 relapses with talking therapy are equivalent to 578 with antipsychotic monotherapy.
+
+It is assumed that there is no difference in side effects between antipsychotic monotherapy and combination therapy and so there is no MCD required.
+
+
+**Step 1: The value of answering the question immediately (more complete measure of outcome)**
+
+This analysis can now consider the differential costs of each treatment along with side effect and the costs and health effects of the primary outcome. Taking this into account a value of information analysis calculates that the trial would be worth 3.96 QALYs each year.
+
+To get an idea of the uppper bound on the value of this proposal we calculate the value If the pilot could be skipped, the definitive trial could definitely be run and the definitive trial reported immediately. This research would be worth: 16.26 QALYs. 
+
+This implies a NETSCC ICER of £153,700 per QALY. Note unlike the previous analysis this does incorporate the assumed additional research costs of £450,000 imposed on the NHS budget.
+
+
+**Step 2: The value of the pilot study (more complete measure of outcome)**
+
+Here we adjust the value of the proposal for the fact that the pilot study will take 2 years to report and will cost £600,000 and the definitive trial only has a 50% chance of happening, will cost Â£2.5M and is expected to take 6 years to report.
+
+Taking account of this means that in all simulations we pay the £600,000 for the pilot study but only in some of those simulations does the definitive trial actually go ahead. As there is a 50% chance that the definitive trial will not happen the expected cost to NETSCC is the cost of the pilot study + 50% of the cost of the definitive trial (£600K + 0.5(Â£2.5M) = Â£1.85M).
+
+**Base case results**
+
+According to the base case analysis this research is expected to have a negative health impact on the health system as the information from the definitive trial is likely to only be worth around 3.96 QALYs per year but the costs of the research imposed on the NHS are likely to dispace around 40 QALYs. The research has such low information value as in most of the simulations the antipsychotics are the most cost effective and this is due to their lower treatment costs per patient year (£687 for antipsycotics vs £1,746 and £2,433 for the other treatments).
+
+100% of the value of this trial is information value as we assume that 100% of the health system is using antipsychotics and these look the best according to our analysis.
+
+As discussed earlier this analysis does not take account of long term health and cost outcomes so if these are substantial then this analysis should be interpreted carefully.
+
+<!-- QALYs. With an associated NETSCC ICER of  per QALY. -->
+<!-- Again unlike the previous analysis this does incorporate the assumed additional research costs of  imposed on the NHS budget. These NHS costs again adjust for the fact that the NHS costs associated with the definitive trial (Â£490,000) are not always incurred but the NHS costs associated with the pilot study (Â£150,000) are always incurred. -->
+
+
+#### Sensitivity analysis
+
+The sections below detail the parameters used in the optimistic and pesimistc scenarios. To improve comparability across proposals we have followed the reference case described previously.
+
+**optimistic inputs**
+
+Values are increased or decreased by 20% to increase the value of the trial. Details and justification provided in a previous section.
+
+  Incidence = 1876
+  ,Time_info = 18 years
+  ,INB_Event = -0.7409*1.2
+  ,Time_research_pilot = 2*0.8
+  ,Time_research_definitive = 6*0.8
+  ,Probability_of_definitive_research = 0.5*1.2 # not clear that this should improve NB unambiguously
+  ,Cost_research_pilot_NETSCC =   601480 *0.8
+  ,Cost_research_pilot_NHS_budget = 150000 *0.8
+  ,Cost_research_definitive_NETSCC =  2500000*0.8
+  ,Cost_research_definitive_NHS_budget = 450000 *0.8
+
+
+
+**Optimistic scenario results**
+
+According to the optimistic analysis this research is expected to have a positive impact of 26.5 QALYs in total. For this proposal this comes at an expected cost of £1.68 million. This results in a NETSCC ICER of £63,400 per QALY. Compared to the average health effect of NHS expenditure of £15,000 per QALY this does not appear to be good value for money. Whether this represents good value for NETSCC depends on the other funding options on the table as discussed in the section on NETSCC decision making.
+
+As before 100% of the value of this trial is information value as we assume that 100% of the health system is using antipsychotics and from the existing evidence these look the best according to our analysis.
+
+**Pessimistic scenario results**
+
+As the trial results in a net loss of health in the base case analysis, this must also be the case in the pessimistic scenario.
+
+
+
+
+### Proposal 2: Complex Adaptive Trial investigating Alzheimer's disease
+
+---
+
+**Proposal 2 summary**
+
+**Research question:** Can treatments slow neurodegeneration in AD? 
+
+**Intervention:** Exenatide
+                  Telmisartan
+                  Exenatide + Telmisartan (combination)
+ 
+
+**Control:** Placebo
+
+**Primary outcome:** Slowed 2 year decline in Mini Mental State Examination (MMSE) of 3.1 points (vs 4.5 points expected for placebo)
+
+**Proposed study:** 4 arm complex adaptive RCT
+
+**Duration of study:** First wave takes 6 years (with option to extend trial to add treatments)
+
+**Costs of study to NETSCC:** £3.3 million
+
+**NHS support and treatment costs:** £1.3 million
+
+---
+
+#### Proposal 2 headline results and overview
+
+**Traffic lights** 
+
+(red) Pesimistic scenario: ICER of £24,700 per QALY
+(green) Base case: ICER of £4,000 per QALY
+(green) Optimistic scenario: ICER of £1,300 per QALY
+
+**Summary of trial results**
+
+<!--In the base case the trial resulted in ### QALYs with an expected cost of ### to NETSCC. According to this analysis, funding the trial would result in a net health loss and so this appears to represent very poor value for NETSCC money.-->
+
+<!---The research is estimated to result in a net healht loss as in most of the likely scenarios the current treatment is more cost effective due to its lower yearly costs ( for antipsycotics vs  and  for the other treatments).-->
+
+
+**Summary of analysis**
+
+<!--In this proposal the researchers are asking NETSCC for £600,000 of public money to fund a feasibility trial. In order to estimate the health impact of this feasibility study we need to think about how this will affect clinical decision making. Here we assume that the feasibility trial will only affect health care decisions if it leads to a definitive trial. For this reason, in order to value this proposal we need to have a model of the definitive trial and its health impact. To do this we use a two step process:
+
+* Step 1: Assume the definitive trial is possible and calculate its value using standard VOI methods.
+* Step 2: Adjust the health impact of the potential definitive trial for fact that it may not be possible.
+
+If the feasibility study is carried out at a cost of £600,000 and it turns out that the definitive trial is not possible then this project will not have effected practice and the money will have been wasted. However if the definitive trial can be carried out then the estimated benefits of the trial will be realised.-->
+
+
+**Key assumptions and drivers of results**
+
+* As it would require complex modelling and because there is insufficient data in the proposal we decided to ignore the option to add arms and continue the trial. This approach will underestimate the value of the trial.
+* Laplace's rule of succession is used to inform the probability that each of the treatments will work. This approach assumes that: each treatment (including the combination) has independent chance of succeeding and the treatments investigated here have a similar chance of succeeding to those already tried
+* In translating primary outcome to costs and QALYs we assumed a model in which disease progression is halted for two years then the patient progresses as ususal. This analysis is for illustrative purposes and this judgement should be informed by consulting with an expert.
+
+
+**Information required but not included in the proposal**
+
+For our analysis we ignore the option to add arms and so underestimate the value of the compex adaptive trial. A more complete discussion of the inputs required to analyse a complex adaptive trial are provided in the section on special trial types.
+
+* Probability of each treatment modifying the disease
+* Current level of utilisation of the interventions
+* Length of time (years) for which the new evidence would be valuable
+* Expected lifetime cost of the treatments
+
+
+#### Proposal 2: full details of analysis
+
+**Approach to analysis**
+
+A complex adaptive trial is one in which patients are randomised to a number of different arms (which correspond to different treatments), outcomes are monitored over time and depending on how well or poorly patients do on each treatment arms are ropped from the trial and new treatments added. There are a number of different methods which can be used to decide when to drop an arm and/or when to stop the study entirely. In principal a complex adaptive trial could keep replacing arms and continue indefinitely.
+
+These two decisions; when to replace an arm and when to stop the trial makes the analysis of complex adaptive trials far more complex than standard RCTs, as such there are two options for NETSCC to estimate the health impact of this proposal:
+
+* Ignore the option to add arms and assume the trial will end after 6 years. As this approach ignores the option to add arms and continue the trial this will underestimate its benefit. As it provides a lower bound on the value of the proposal if this analysis shows it to be good value then there is no need for any further analysis. 
+* Explicitly model the sequential arms and open ended stopping time. This approach will provide the best estimate of the proposal value. This requires far more involved modelling which takes account of the decision rules for adding/removing arms and stopping the trial. Other special requirements are relative effect uncertainty for all treatments which may be added and the costs of adding arms. 
+
+Because of the complexity of the explicit modelling approach along with the fact that there is no detail on the decision rules to be used in the proposal we take the first option. Therefore the analysis here will underestimate the value of the trial.
+
+This means that we treat it like a normal trial and so only the core input requirements are required to estimate the health impact of any study. 
+
+---
+
+**Core data for proposed trial**
+
+* **Primary outcome measure**: Slowed 2 year decline in Mini Mental State Examination (MMSE) of 3.1 points (vs 4.5 points expected for placebo)
+* **Minimum clinical difference (MCD) in outcomes**: 1.3 point difference in MMSE at 2 years
+* **Treatment effectiveness**: [not reported] Each active treatment has a probability of success of 0.5%, details below. 
+* **Incidence per annum**: 100,000 new cases of Alzheimer's each year 
+* **Costs of the proposed study**: Costs of study to NETSCC: £3.3 million, NHS support and treatment costs: £1.3 million.
+* **Current level of utilisation of the interventions**: [not reported] Assume no one receives active treatment.
+* **Duration of the proposed study**: 6 years
+* **Length of time (years) for which the new evidence would be valuable**: [not reported] Assume area moves very slowly, 20 years.
+* **Discount rate**: 3.5% (UK Treasury, 2013) common across proposals.
+* **Opportunity cost of health expenditure**: £15,000/QALY (UK Department of Health, 2017) common across proposals.
+
+---
+
+**Treatment effectiveness**
+
+In order to value the proposal some judgemnt must be made about the probability of each treatment resulting in successful disease modification. In this proposal it is probably inapproprate to apply the standard "very uncertain" value used in other proposals as according to the proposal "200 drugs have advanced to stage 2 and none demonstrated disease modification". 
+One option to help think about this judgement is to ask: what is the chance of success in the next trial if you have observed 200 failures? This is a common problem in quality control where Laplace's rule of succession is used. Here the probability of success if you have not observed any successes in 200 trys is = 1/(200 + 2) = 0.5% 
+
+This approach assumes that: 
+
+* Each treatment (including the combination) has independent chance of succeeding
+* Treatments investigated here have a similar chance of succeeding to those already tried
+
+Other reasonable aproaches are possible, this method is used here for illustrative purposes.
+
+**Current evidence**
+
+Each treatment has such a low probability of success (0.5%) that a trial is requied before any active treatment could be implemented. As we assume that no one receives active treatment this means that 100,000 people each year experience normal Alzheimer's disease progression.
+
+**The value of the proposed research (only considering primary outcome)**
+
+Even though there is only a small probability of any of the treatment working i.e. there is a high probability that the trial will show nothing, because the incidence is so high (100,000 per year) the research is worth 1492 patients with slowed decline per year.
+
+If the trial reported immediately this research is expected to be worth 21,466 patients with slowed decline per year. This implies a NETSCC ICER of £154 per relapse prevented. Note this does not incorporate the additional research costs of £1,300,000 imposed on the NHS budget.
+
+According to the proposal the trial is expected to report after 6 years and taking this into account the research is expected to be worth 13,389 patients with slowed decline per year. This implies a NETSCC ICER of £247 per relapse prevented. Again, note this does not incorporate the additional research costs of £1,300,000 imposed on the NHS budget.
+
+
+#### Taking account of more than the primary outcome
+
+As emphasised in this document, in many decisions the primary outcome will not capture many of the aspects important to decision making. In addition, in order to compare proposals across disease areas it is necessary to link understand the health impact using a generic measure. As this proposal defines the primary outcome as the necessary improvement for the active treatments to be worthwhile (1.3 point difference in MMSE at 2 years) all that is required is to link this primary outcome to costs and QALYs.
+
+**Associating costs and QALYs with the primary outcome **
+
+In this proposal the primary outcome is defined as a 1.3 point difference in MMSE at 2 years compared to placebo. 
+
+In order to get some idea of the cost and health effect of this slowed decline we assume a model of slowed decline in MMSE in which a patients' disease is halted in "mild" (MMSE = 25-30) state for 2 years. As elsewhere in this document we emphasise that these values are for illustrative purposes, a propoer analysis would require the involvement of a disease expert in order to make reasonable model choices. 
+
+Costs and utilities associated with mild and moderate disease are taken from a NICE multiple technology appraisal in Alzheimer's disease (2012). The figures used are displayed in the table below:
+
+<!--![](.png)-->
+
+Comparing delayed progression to normal progression, delaying progression results in 1.7 additional QALYs and costs an additional £23,000. As noted, these additional costs will have health impacts elsewhere in the system and so we must use the empirical estimate of the opportunity cost of health expenditure to work out the overall net health effect of (= 1.7 - £23,000/£15,000 =) 0.1645 QALYs for each delayed disease progression.
+
+**Treatment costs**
+
+Each treatment is associated with different costs. We assume that patients are treated as long as the health effect persisits which is assumed to be 2 years here. 
+
+* Placebo: £0 for no treatment
+* Exenatide: 18.34 per week (medicinescomplete) x 104 weeks = £1,907 per person 
+* Telmisartan: £13.61 per 28-tab pack (medicinescomplete) / 28 x 365 days x 2 years = £355 per person
+* Combination: £1,907 + £355 = £2262 per person
+
+As 100,000 patient may recieve this each year this results in the yearly expenditure below:
+
+* Placebo: £0 per perona x 100,000 = £0 for no treatment
+* Exenatide: £1,907 per person x 100,000 = £191 million per year
+* Telmisartan: £355 per person x 100,000 = £35.5 million per year
+* Combination: £2262 per person x 100,000 = £226 million per year
+
+
+**Taking account of side effects using the MCD **
+
+It is assumed here that the required difference in MMSE (1.3 points) for active treatment reflects the difference in side effects for the active treatments (Exenatide, Telmisartan and combination)
+
+**The value of trial if it reported immediately (more complete measure of outcome)**
+
+This analysis can now consider the differential costs of each treatment along with the modelled costs and health effects of the primary outcome. Taking this into account a value of information analysis calculates that the trial would be worth 95.72 QALYs each year.
+
+If the trial reported immediately this research is expected to be worth 1,290 QALYs per year. This implies a NETSCC ICER of £2,566 per QALY. 
+
+**Base case: The value of the proposed study (using more complete measure of outcome)**
+
+According to the proposal the trial is expected to report after 6 years and taking this into account the research is expected to create 772 QALYs. This implies a NETSCC ICER of 4,287 per QALY. 
+
+100% of the value of this trial is information value as we assume that 100% of the health system is not using active treatment.
+
+#### Sensitivity analysis
+
+The sections below detail the parameters used in the optimistic and pesimistc scenarios. To improve comparability across proposals we have followed the reference case described previously.
+
+**optimistic inputs**
+
+Time_info = 24 years
+Time_research = 4.8 years
+Cost_research_NETSCC =  £2.6 million
+Cost_research_NHS = £1 million
+INB_Event = 0.2 QALYs
+Incidence = 120,000
+
+**Optimistic scenario results**
+
+According to the optimistic analysis this research is expected to have a positive impact of 2,000 QALYs in total. For this proposal this comes at an expected NETSCC cost of £2.6 million. This results in a NETSCC ICER of £1,300 per QALY. Compared to the average health effect of NHS expenditure of £15,000 per QALY this appears to be an excellent use of NHS resources. Whether this represents good value for NETSCC depends on the other funding options on the table as discussed in the section on NETSCC decision making.
+
+As before 100% of the value of this trial is information value as we assume that the health system is currently not using the active treatments.
+
+**Pessimistic inputs**
+
+Time_info = 16 years
+Time_research = 7.2 years
+Cost_research_NETSCC =  £4 million
+Cost_research_NHS = £1.6 million
+INB_Event = 0.13 QALYs
+Incidence = 80,000
+
+
+**Pessimistic scenario results**
+
+According to the pesimistic analysis this research is expected to have a positive impact of 160 QALYs in total. For this proposal this comes at an expected NETSCC cost of £4 million. This results in a NETSCC ICER of £24,700 per QALY. Compared to the average health effect of NHS expenditure of £15,000 per QALY this does not appear to be a good use of NHS resources. Whether this represents good value for NETSCC depends on the other funding options on the table as discussed in the section on NETSCC decision making.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+### Proposal 3: Anti-PD1 antibodies in advanced Melanoma (discontinuation trial) ######
+
+
+---
+
+**Proposal 3 summary**
+
+**Research question: What is the clinical and cost effectivness of withdrawing Anti-PD1 agents after 12 months** 
+
+**Intervention: Withdrawl of therapy at 12 months** 
+
+**Control: Continue to treat until progression** 
+
+**Primary outcome: Progression free survival (PFS) at 24 months** 
+
+**Proposed study: 2 arm RCT** 
+
+**Duration of study: Primary analysis 6 years (long term follow up 10.3 years)** 
+
+**Costs of study to NETSCC:£2.5 million** 
+
+**NHS support and treatment costs: savings of £62.4 million** 
+
+---
+
+#### Proposal 3 headline results and overview
+
+**Traffic lights** 
+
+(#) Pesimistic scenario: 
+(#) Base case: 
+(#) Optimistic scenario: 
+
+**Summary of trial results**
+
+<!--In the base case the trial resulted in ### QALYs with an expected cost of ### to NETSCC. According to this analysis, funding the trial would result in a net health loss and so this appears to represent very poor value for NETSCC money.-->
+
+<!---The research is estimated to result in a net healht loss as in most of the likely scenarios the current treatment is more cost effective due to its lower yearly costs ( for antipsycotics vs  and  for the other treatments).-->
+
+
+**Summary of analysis**
+
+<!--In this proposal the researchers are asking NETSCC for £600,000 of public money to fund a feasibility trial. In order to estimate the health impact of this feasibility study we need to think about how this will affect clinical decision making. Here we assume that the feasibility trial will only affect health care decisions if it leads to a definitive trial. For this reason, in order to value this proposal we need to have a model of the definitive trial and its health impact. To do this we use a two step process:
+
+* Step 1: Assume the definitive trial is possible and calculate its value using standard VOI methods.
+* Step 2: Adjust the health impact of the potential definitive trial for fact that it may not be possible.
+
+If the feasibility study is carried out at a cost of £600,000 and it turns out that the definitive trial is not possible then this project will not have effected practice and the money will have been wasted. However if the definitive trial can be carried out then the estimated benefits of the trial will be realised.-->
+
+
+**Key assumptions and drivers of results**
+
+* The proposal describes a primary analysis which reports after 6 years and a long term follow up study which reports after 10.3 years. For this analysis we only take account of the primary analysis and so do not capture the benefit of the long term aspect of this study. This means we may underestimate the full benefit of the study.
+
+<!--* The uncertainty in the relative effect was not reporeted so we assumed the standard "very uncertain" value for both talking therapy and combination therapy. Statisticaly, this is a normally distributed log odds ratio with mean zero and standard deviation of 0.5.
+* As the probability of relapse within one year for antipsycotics appears to be around 40% the "very uncertain" value implies that the new treatments are likely to result a relapse rate between 20% and 60%.
+* As discussed previously this value requires empirical justification. Additionally, in this context it implies that the we consider the combination no more or less likely to work than either of the individual treatments.
+* Some informed veiw about the cance of the definitive trial occuring is required, for illustrative purposes we assumed a 50% chance of definitive trial occuring as a result of the pilot.
+* As no information on the definitive trial was provided, we needed to assume values for each of the imputs. For illustrative purposes these have been based on comparable trials in the proposal set where possible.
+* In translating primary outcome to costs and QALYs, we only consider differences in costs and outcomes over the 12 months the patient is part of the trial as it is very unclear how the patients will develop long term and how this depends on treatment. This is an important limitation of the analysis (Sculpher, 2006) as long term effects on costs and outcomes will not be captured, however reflecting this would require much more sophisticated modelling. 
+* Cost and utility values are taken from NICE guideline on psychosis and schizophrenia in adults, these may be different for first episode psychosis in children and young people.
+* Expert optinion was not available to make judgement between risk of relapse and additional side effects. This has to be assumed by the analyst for illustrative purposes.-->
+
+
+**Information required but not included in the proposal**
+
+<!--Research only impacts health in so far as it changes clinical practice. This is a small feasibility trial (n=90) and so is unlikely to change practice on its own, therefore it only really influences population health through a future definitive trial. The proposal contained very little quantitative information on the potential definitive trial and so estimates and assumptions were used for illustrative purposes. The list of inputs required but not included in this proposal is given below:
+
+
+* Definitive trial primary outcome measure
+* Definitive trial minimum clinical difference (MCD) in outcomes
+* Duration of the proposed definitive trial
+* Current information on relative treatment effectiveness
+* Current information on baseline event rate
+* Incidence per annum
+* Research costs of the definitive trial (both NHS and NETSCC)
+* Current level of utilisation of the interventions
+* Length of time (years) for which the new evidence would be valuable-->
+
+
+
+
+#### Proposal 3: full details of analysis
+
+**Approach to analysis**
+
+This is a classic RCT comparing treatment until progression in one arm to treatment for 12 months in the other. Because the treatment is extremely expensive (£X per patient per year) and potentially toxic, withdrawing therapy will result in substantial cost savings and potentially improve health.
+
+The proposal describes a primary analysis which reports after 6 years and a long term follow up study which reports after 10.3 years. For this analysis we only take account of the primary analysis and so do not capture the benefit of the long term aspect of this study. This means we may underestimate the full benefit of the study.
+
+Also, the proposal is ambiguous about the number of arms in the proposed study. The sample size is calculated assuming two arms and both the scientific abstract and the plain English summary refer only to two arms. However, the trial flow chart and remainder of proposal refer to three arms where in one of the arms the treatment is withdrawn at 6 months.
+
+In the analysis here we assumed that there are two arms in the proposed study. Naturally, the results would be different if the study had three arms.
+
+---
+
+**Core data for proposed trial**
+
+* **Primary outcome measure**: Progression free survival (PFS) at 24 months 
+* **Minimum clinical difference (MCD) in outcomes**: Discussed later
+* **Relative treatment effectiveness**: [not reported] Half normal distribution with standard error = 0.5 on log odds scale for six months of treatment. Chosen as this as it is similar to the common assumption made when there is no data on a new intervention. It also expresses the belief that the low intensity treatment is unlikely to be better in terms of PFS than the control.
+* **Baseline event rate**: 51% of patients progression free at 2 years under standard treatment.
+* **Incidence per annum**: [not reported] 1,137 from NICE budget impact statement (NICE, ###)
+* **Costs of the proposed study**: Costs of study to NETSCC: £2.5 million, NHS support and treatment costs: savings of £62.4 million.
+* **Current level of utilisation of the interventions**: [not reported] NICE mandated treatment requires treatment until progression, assume 100% treated until progression (control)
+* **Duration of the proposed study**: 6 years
+* **Length of time (years) for which the new evidence would be valuable**: [not reported] There are a number of trials which have not reported yet and the disease area appears to move at a moderate pace so assume 10 years.
+* **Discount rate**: 3.5% (UK Treasury, 2013) common across proposals.
+* **Opportunity cost of health expenditure**: £15,000/QALY (UK Department of Health, 2017) common across proposals.
+
+[additional core data for markov model?]
+
+* 
+
+---
+
+**Treatment effectiveness**
+
+In order to value the proposal some judgemnt must be made about the effet of treating for 12 months as opposed to treating until progression.
+
+In this proposal it is probably inapproprate to apply the standard "very uncertain" value used in other proposals as this would imply that the less intensive treatment schedule would be as likely to increase PFS as reduce it. Though the less intensive treatment will reduce costs and may reduce side effects it appears unlikely to improve PFS.
+
+One option to help think about this judgement is to apply a half normal distribution to the treatment effect (on the log hazard scale), this allows us to express uncertainty about how much worse the new treatment is for PFS compared to the current treatment.
+
+
+
+Other reasonable aproaches are possible, this method is used here for illustrative purposes.
+
+**Current evidence**
+
+Each treatment has such a low probability of success (0.5%) that a trial is requied before any active treatment could be implemented. As we assume that no one receives active treatment this means that 100,000 people each year experience normal Alzheimer's disease progression.
+
+**The value of the proposed research (only considering primary outcome)**
+
+Even though there is only a small probability of any of the treatment working i.e. there is a high probability that the trial will show nothing, because the incidence is so high (100,000 per year) the research is worth # patients with slowed decline per year.
+
+If the trial reported immediately this research is expected to be worth # patients with slowed decline per year. This implies a NETSCC ICER of # per relapse prevented. Note this does not incorporate the additional research costs of £1,300,000 imposed on the NHS budget.
+
+According to the proposal the trial is expected to report after 6 years and taking this into account the research is expected to be worth # patients with slowed decline per year. This implies a NETSCC ICER of # per relapse prevented. Again, note this does not incorporate the additional research costs of £1,300,000 imposed on the NHS budget.
+
+
+#### Taking account of more than the primary outcome
+
+As emphasised in this document, in many decisions the primary outcome will not capture many of the aspects important to decision making. In addition, in order to compare proposals across disease areas it is necessary to link understand the health impact using a generic measure. As this proposal defines the primary outcome as the necessary improvement for the active treatments to be worthwhile (1.3 point difference in MMSE at 2 years) all that is required is to link this primary outcome to costs and QALYs.
+
+**Associating costs and QALYs with the primary outcome **
+
+In this proposal the primary outcome is defined as a 1.3 point difference in MMSE at 2 years compared to placebo. 
+
+In order to get some idea of the cost and health effect of this slowed decline we assume a model of slowed decline in MMSE in which a patients' disease is halted in "mild" (MMSE = 25-30) state for 2 years. As elsewhere in this document we emphasise that these values are for illustrative purposes, a propoer analysis would require the involvement of a disease expert in order to make reasonable model choices. 
+
+Costs and utilities associated with mild and moderate disease are taken from a NICE multiple technology appraisal in Alzheimer's disease (2012). The figures used are displayed in the table below:
+
+<!--![](.png)-->
+
+Comparing delayed progression to normal progression, delaying progression results in 1.7 additional QALYs and costs an additional £23,000. As noted, these additional costs will have health impacts elsewhere in the system and so we must use the empirical estimate of the opportunity cost of health expenditure to work out the overall net health effect of (= 1.7 - £23,000/£15,000 =) 0.1645 QALYs for each delayed disease progression.
+
+**Treatment costs**
+
+Each treatment is associated with different costs. We assume that patients are treated as long as the health effect persisits which is assumed to be 2 years here. 
+
+* Placebo: £0 for no treatment
+* Exenatide: 18.34 per week (medicinescomplete) x 104 weeks = £1,907 per person 
+* Telmisartan: £13.61 per 28-tab pack (medicinescomplete) / 28 x 365 days x 2 years = £355 per person
+* Combination: £1,907 + £355 = £2262 per person
+
+As 100,000 patient may recieve this each year this results in the yearly expenditure below:
+
+* Placebo: £0 per perona x 100,000 = £0 for no treatment
+* Exenatide: £1,907 per person x 100,000 = £191 million per year
+* Telmisartan: £355 per person x 100,000 = £35.5 million per year
+* Combination: £2262 per person x 100,000 = £226 million per year
+
+
+**Taking account of side effects using the MCD **
+
+It is assumed here that the required difference in MMSE (1.3 points) for active treatment reflects the difference in side effects for the active treatments (Exenatide, Telmisartan and combination)
+
+**The value of trial if it reported immediately (more complete measure of outcome)**
+
+This analysis can now consider the differential costs of each treatment along with the modelled costs and health effects of the primary outcome. Taking this into account a value of information analysis calculates that the trial would be worth # QALYs each year.
+
+If the trial reported immediately this research is expected to be worth # QALYs per year. This implies a NETSCC ICER of # per QALY. 
+
+**Base case: The value of the proposed study (using more complete measure of outcome)**
+
+According to the proposal the trial is expected to report after 6 years and taking this into account the research is expected to create # QALYs. This implies a NETSCC ICER of # per QALY. 
+
+100% of the value of this trial is information value as we assume that 100% of the health system is not using active treatment.
+
+#### Sensitivity analysis
+
+The sections below detail the parameters used in the optimistic and pesimistc scenarios. To improve comparability across proposals we have followed the reference case described previously.
+
+**optimistic inputs**
+
+Time_info = 24 years
+Time_research = 4.8 years
+Cost_research_NETSCC =  £2.6 million
+Cost_research_NHS = £1 million
+INB_Event = 0.2 QALYs
+Incidence = 120,000
+
+**Optimistic scenario results**
+
+According to the optimistic analysis this research is expected to have a positive impact of 2,000 QALYs in total. For this proposal this comes at an expected NETSCC cost of £2.6 million. This results in a NETSCC ICER of £1,300 per QALY. Compared to the average health effect of NHS expenditure of £15,000 per QALY this appears to be an excellent use of NHS resources. Whether this represents good value for NETSCC depends on the other funding options on the table as discussed in the section on NETSCC decision making.
+
+As before 100% of the value of this trial is information value as we assume that the health system is currently not using the active treatments.
+
+**Pessimistic inputs**
+
+Time_info = 16 years
+Time_research = 7.2 years
+Cost_research_NETSCC =  £4 million
+Cost_research_NHS = £1.6 million
+INB_Event = 0.13 QALYs
+Incidence = 80,000
+
+
+**Pessimistic scenario results**
+
+According to the pesimistic analysis this research is expected to have a positive impact of 160 QALYs in total. For this proposal this comes at an expected NETSCC cost of £4 million. This results in a NETSCC ICER of £24,700 per QALY. Compared to the average health effect of NHS expenditure of £15,000 per QALY this does not appear to be a good use of NHS resources. Whether this represents good value for NETSCC depends on the other funding options on the table as discussed in the section on NETSCC decision making.
+
+
+
+
+
+
+
+
+### Proposal 4: ######
+
+
+---
+
+**Proposal # summary**
+
+**Research question:** 
+
+**Intervention:** 
+
+**Control:** 
+
+**Primary outcome:** 
+
+**Proposed study:** 
+
+**Duration of study:** 
+
+**Costs of study to NETSCC:** 
+
+**NHS support and treatment costs:** 
+
+---
+
+#### Proposal # headline results and overview
+
+**Traffic lights** 
+
+(#) Pesimistic scenario: 
+(#) Base case: 
+(#) Optimistic scenario: 
+
+**Summary of trial results**
+
+<!--In the base case the trial resulted in ### QALYs with an expected cost of ### to NETSCC. According to this analysis, funding the trial would result in a net health loss and so this appears to represent very poor value for NETSCC money.-->
+
+<!---The research is estimated to result in a net healht loss as in most of the likely scenarios the current treatment is more cost effective due to its lower yearly costs ( for antipsycotics vs  and  for the other treatments).-->
+
+
+**Summary of analysis**
+
+<!--In this proposal the researchers are asking NETSCC for £600,000 of public money to fund a feasibility trial. In order to estimate the health impact of this feasibility study we need to think about how this will affect clinical decision making. Here we assume that the feasibility trial will only affect health care decisions if it leads to a definitive trial. For this reason, in order to value this proposal we need to have a model of the definitive trial and its health impact. To do this we use a two step process:
+
+* Step 1: Assume the definitive trial is possible and calculate its value using standard VOI methods.
+* Step 2: Adjust the health impact of the potential definitive trial for fact that it may not be possible.
+
+If the feasibility study is carried out at a cost of £600,000 and it turns out that the definitive trial is not possible then this project will not have effected practice and the money will have been wasted. However if the definitive trial can be carried out then the estimated benefits of the trial will be realised.-->
+
+
+**Key assumptions and drivers of results**
+
+<!--* The uncertainty in the relative effect was not reporeted so we assumed the standard "very uncertain" value for both talking therapy and combination therapy. Statisticaly, this is a normally distributed log odds ratio with mean zero and standard deviation of 0.5.
+* As the probability of relapse within one year for antipsycotics appears to be around 40% the "very uncertain" value implies that the new treatments are likely to result a relapse rate between 20% and 60%.
+* As discussed previously this value requires empirical justification. Additionally, in this context it implies that the we consider the combination no more or less likely to work than either of the individual treatments.
+* Some informed veiw about the cance of the definitive trial occuring is required, for illustrative purposes we assumed a 50% chance of definitive trial occuring as a result of the pilot.
+* As no information on the definitive trial was provided, we needed to assume values for each of the imputs. For illustrative purposes these have been based on comparable trials in the proposal set where possible.
+* In translating primary outcome to costs and QALYs, we only consider differences in costs and outcomes over the 12 months the patient is part of the trial as it is very unclear how the patients will develop long term and how this depends on treatment. This is an important limitation of the analysis (Sculpher, 2006) as long term effects on costs and outcomes will not be captured, however reflecting this would require much more sophisticated modelling. 
+* Cost and utility values are taken from NICE guideline on psychosis and schizophrenia in adults, these may be different for first episode psychosis in children and young people.
+* Expert optinion was not available to make judgement between risk of relapse and additional side effects. This has to be assumed by the analyst for illustrative purposes.-->
+
+
+**Information required but not included in the proposal**
+
+<!--Research only impacts health in so far as it changes clinical practice. This is a small feasibility trial (n=90) and so is unlikely to change practice on its own, therefore it only really influences population health through a future definitive trial. The proposal contained very little quantitative information on the potential definitive trial and so estimates and assumptions were used for illustrative purposes. The list of inputs required but not included in this proposal is given below:
+
+
+* Definitive trial primary outcome measure
+* Definitive trial minimum clinical difference (MCD) in outcomes
+* Duration of the proposed definitive trial
+* Current information on relative treatment effectiveness
+* Current information on baseline event rate
+* Incidence per annum
+* Research costs of the definitive trial (both NHS and NETSCC)
+* Current level of utilisation of the interventions
+* Length of time (years) for which the new evidence would be valuable-->
+
+
+
+
+#### Proposal #: full details of analysis
+
+**Approach to analysis**
+
+<!--Research only impacts health in so far as it changes clinical practice. This is a small feasibility trial (n=90) and is unlikely to change practice on its own, therefore it only really influences population health through a future definitive trial. If it turns out this definitive trial is not possible then the health system gets nothing i.e. the Â£600K in NETSCC costs will not produce any health benefit.
+
+For this reason information on the future definitive trial essential to value feasibility trial and so this information is required if researchers wish to claim health care funds.
+
+As infomration on the future definitive trial is not included in the proposal we need assumptions about it for illustrative purposes. The infomration required on the future definitive trial is:
+
+* Primary outcome in the trial
+* Uncertainty in this primary outcome 
+* Trial duration 
+* Trial cost
+
+The reason the feasibility trial must be done is that the researchers are unsure about whether the definitive trial is possible. If the trial cannot be done the Â£600,000 for this feasibility trial will be wasted (sunk cost). This means that understanding the health impact of a feasibility study requires an informed judgement about the liklihood of the feasibility trial leading to a definitive trial. This information is not included in the proposal and so data for illustrative purposes is provided.
+
+Feasibility trials are modelled in two stages:
+
+* Step 1: Assume the definitive trial is possible and calculate its value using standard VOI methods.
+* Step 2: Adjust the health impact of the potential definitive trial for fact that it may not be possible. 
+
+The core data requirements are required to estimate the health impact of any study. In this case we require them for the planned definitive trial. As much of this data is not inlcuded in the proposals we demonstrate values for illustrative purposes. This data is not very difficult to find and if researchers claim that their feasibility study is worth Â£600,000 in health funds then they must detail how the future research will benefit patients.-->
+
+---
+
+**Core data for proposed trial**
+
+* **Primary outcome measure**: [not reported]
+* **Minimum clinical difference (MCD) in outcomes**: [not reported] Discussed later
+* **Relative treatment effectiveness**: [not reported] mean OR = 1 and standard error = 0.5 on log odds scale for both talking therapy and the combination. Chosen as this is the common assumption made when there is no data on a new intervention.
+* **Baseline event rate**: [not reported] 
+* **Incidence per annum**: [not reported] 
+* **Costs of the proposed study**: 
+* **Current level of utilisation of the interventions**: [not reported] Assume ##
+* **Duration of the proposed study**: 
+* **Length of time (years) for which the new evidence would be valuable**: [not reported] Assume <!--area moves relatively slowly, 15 years-->
+* **Discount rate**: 3.5% (UK Treasury, 2013) common across proposals.
+* **Opportunity cost of health expenditure**: £15,000/QALY (UK Department of Health, 2017) common across proposals.
+
+---
+
+
+**Current evidence**
+
+<!--From the data above we expect  people to relapse each year given the current treatment (37% of 1563). As we have assumed that we are very uncertain about whether the new treatments are better and so would expect a similar number of events if these treatments were used. However we are very uncertain about how good or bad these treatments are and have assumed that they are likely be associated with relapse rates somewhere between 20% and 60% (compared to 37% for the current treatment)-->
+
+**Step 1: The value of the proposed research (only considering primary outcome)**
+
+<!--If only the uncertainty in the primary outcome is considered there is considerable uncertainty about which of the three treatments will result in the fewest relapses. A value of information analysis calculates that the trial would be worth  relapses prevented each year.
+
+To get an idea of the uppper bound on the value of this proposal we calculate the value If the pilot could be skipped, the definitive trial could definitely be run and the definitive trial reported immediately. This research would be worth:  relapses prevented. 
+
+This implies a NETSCC ICER of  per relapse prevented. Note this does not incorporate the assumed additional research costs of £450,000 imposed on the NHS budget.-->
+
+
+#### Taking account of more than the primary outcome
+
+As discussed a various places in this document, in many decisions the primary outcome will not capture many of the aspects important to decision making. In addition, in order to compare proposals across disease areas it is necessary to link understand the health impact using a generic measure. To achive this we fist describe how costs and QALYs can be associated with primary outcome and then we describe how other aspects such as side effects can be proxied by the MCD.
+
+**Associating costs and QALYs with the primary outcome **
+
+<!--In this proposal the primary outcome is assumed to be relapse at 12 months as defined according to Positive and Negative Symptoms Scale (PANSS). Relapse is associated with worse health and increased health expenditure and this must be at least partially captured in our analysis. Here we only consider differences in costs and outcomes over the 12 months the patient is part of the trial as it is very unclear how the patients will develop long term and how this depends on treatment. This is an important limitation of the analysis (Sculpher, 2006) as long term effects on costs and outcomes will not be captured, however reflecting this would require much more sophisticated modelling. 
+
+It is assumed that if a patient does relapse this happens half way through the trial period (at 6 months), otherwise they remain in remission for the entire 12 months. Costs and utilities associated with relapse and remssion are taken from the NICE guideline on Psychosis and Schizophrenia in adults (2014). The figures used are displayed in the table below:
+
+![](W:/teehta/David G/NETCC/2017/Analysis for NETSCC/Images from proposals/P1outcomeToCostQALY.png)
+
+Comparing relapse to remission, for every additional relapse a patient loses 0.0645 QALYs and costs an additional Â£10,146. As noted, these additional costs will have health impacts elsewhere in the system.-->
+
+**Treatment costs**
+
+<!--Each treatment is associated with different costs. As the NICE guidance recommends that antipsycotics are choosen based on side effect profile we take the average yearly cost over the range of antipsycotics listed in the NICE guidance, . 
+
+The talking therapy is described as up to 30 individual sessions over 6 months, with an extra 6 sessions of family therapy. Assume an average of half the sessions for each will be attended implies 18 sessions in totoal. Based on a cost of Â£97 per CBT session (PSSRU, 2016) this implies a total cost of . The combination therapy is assumed to be simply the cost of antipsychotics plus the cost of talking therapy,  per person.
+
+
+Treatment                   Treatment costs per year    Relapses per year         NHE of relapses     
+-------------------------   ------------------          -----------------         -----------------  
+Antipsychotics                          
+Talking therapy             
+Combination                 
+-->
+
+**Taking account of side effects using the MCD **
+
+<!--Antipsychotics and combination therapy are likely to be associated with more side effects than talking therapy alone but they may result in fewer relapses. As in every clinical decision these additional side effects must be balanced against clinical effectiveness. 
+
+* The current treatment, antipsychotics is associated with  relapses per year. This therapy likely results in more side effects than talking therapy. What number of relapses per year for talking therapy would make these treatments equivalent?
+* [not reported] Suppose that due to the reduced side effects a 7% increase in relpse rate would be acceptable for talking therapy. This imples that  relapses with talking therapy are equivalent to  with antipsychotic monotherapy.
+
+It is assumed that there is no difference in side effects between antipsychotic monotherapy and combination therapy and so there is no MCD required.
+-->
+
+**The value of trial if it reported immediately (more complete measure of outcome)**
+
+<!--This analysis can now consider the differential costs of each treatment along with side effect and the costs and health effects of the primary outcome. Taking this into account a value of information analysis calculates that the trial would be worth  QALYs each year.
+
+To get an idea of the uppper bound on the value of this proposal we calculate the value If the pilot could be skipped, the definitive trial could definitely be run and the definitive trial reported immediately. This research would be worthQALYs. 
+
+This implies a NETSCC ICER of  per QALY. Note unlike the previous analysis this does incorporate the assumed additional research costs of £450,000 imposed on the NHS budget.-->
+
+
+**Base case: The value of the proposed study (using more complete measure of outcome)**
+
+<!--Here we adjust the value of the proposal for the fact that the pilot study will take 2 years to report and will cost £600,000 and the definitive trial only has a 50% chance of happening, will cost Â£2.5M and is expected to take 6 years to report.
+
+Taking account of this means that in all simulations we pay the £600,000 for the pilot study but only in some of those simulations does the definitive trial actually go ahead. As there is a 50% chance that the definitive trial will not happen the expected cost to NETSCC is the cost of the pilot study + 50% of the cost of the definitive trial (£600K + 0.5(Â£2.5M) = Â£1.85M).
+
+According to the base case analysis this research is expected to have a negative health impact on the health system as the information from the definitive trial is likely to only be worth around  QALYs per year but the costs of the research imposed on the NHS are likely to dispace around 40 QALYs. The research has such low information value as in most of the simulations the antipsychotics are the most cost effective and this is due to their lower treatment costs per patient year ( for antipsycotics vs  and  for the other treatments).
+
+100% of the value of this trial is information value as we assume that 100% of the health system is using antipsychotics and these look the best according to our analysis.-->
+
+As discussed earlier this analysis does not take account of long term health and cost outcomes so if these are substantial then this analysis should be interpreted carefully.
+
+<!-- QALYs. With an associated NETSCC ICER of  per QALY. -->
+<!-- Again unlike the previous analysis this does incorporate the assumed additional research costs of  imposed on the NHS budget. These NHS costs again adjust for the fact that the NHS costs associated with the definitive trial (Â£490,000) are not always incurred but the NHS costs associated with the pilot study (Â£150,000) are always incurred. -->
+
+
+#### Sensitivity analysis
+
+The sections below detail the parameters used in the optimistic and pesimistc scenarios. To improve comparability across proposals we have followed the reference case described previously.
+
+**optimistic inputs**
+
+  Incidence = #
+  ,Time_info = #
+  ,INB_Event = #
+  ,Time_research_pilot = 0
+  ,Time_research_definitive = #
+  ,Probability_of_definitive_research = 1
+  ,C_t0 = #
+  ,C_t1 = #
+  ,C_t2 = #
+  ,MCD_t1 = #
+  ,MCD_t2 = #
+  ,Cost_research_pilot_NETSCC =   0
+  ,Cost_research_pilot_NHS_budget = 0
+  ,Cost_research_definitive_NETSCC =  #
+  ,Cost_research_definitive_NHS_budget = #
+
+
+
+**Optimistic scenario results**
+
+<!--According to the optimistic analysis this research is expected to have a positive impact of  QALYs in total. For this proposal this comes at an expected cost of . This results in a NETSCC ICER of  per QALY. Compared to the average health effect of NHS expenditure of £15,000 per QALY this does not appear to be good value for money. Whether this represents good value for NETSCC depends on the other funding options on the table as discussed in the section on NETSCC decision making.
+
+As before 100% of the value of this trial is information value as we assume that 100% of the health system is using antipsychotics and from the existing evidence these look the best according to our analysis.-->
+
+**Pessimistic inputs**
+
+  Incidence = #
+  ,Time_info = #
+  ,INB_Event = #
+  ,Time_research_pilot = 0
+  ,Time_research_definitive = #
+  ,Probability_of_definitive_research = 1
+  ,C_t0 = #
+  ,C_t1 = #
+  ,C_t2 = #
+  ,MCD_t1 = #
+  ,MCD_t2 = #
+  ,Cost_research_pilot_NETSCC =   0
+  ,Cost_research_pilot_NHS_budget = 0
+  ,Cost_research_definitive_NETSCC =  #
+  ,Cost_research_definitive_NHS_budget = #
+
+
+**Pessimistic scenario results**
+
+<!--As the trial results in a net loss of health in the base case analysis, this must also be the case in the pessimistic scenario.-->
+
+
+
+## References
+
+
+Bond 2012, The Effectiveness and Cost-Effectiveness of Donepezil, Galantamine, Rivastigmine and Memantine for the Treatment of Alzheimer's Disease (Review of Technology Appraisal No. 111)
+
+Claxton, K., Griffin, S., Koffijberg, H., & McKenna, C. (2015a). How to estimate the health benefits of additional research and changing clinical practice. BMJ, 351, h5987. http://doi.org/10.1136/bmj.h5987
+
+Claxton, K., Martin, S., Soares, M., Rice, N., Spackman, E., Hinde, S., â€¦ Sculpher, M. (2015b). Methods for the estimation of the National Institute for Health and Care Excellence cost-effectiveness threshold. Health Technology Assessment, 19(14), 1â€“504. http://doi.org/10.3310/hta19140
+
+Kirkbride JB, Jackson D, Perez J, et al. A population-level prediction tool for the incidence of first-episode psychosis: translational epidemiology based on cross-sectional data. BMJ Open. 2013;3(2):e001998. doi:10.1136/bmjopen-2012-001998.
+
+Edwards, Jane, Meredith G. Harris, and Swagata Bapat. "Developing services for first-episode psychosis and the critical period." The British journal of psychiatry 187.48 (2005): s91-s97
+
+Jackson, Henry, et al. "A controlled trial of cognitively oriented psychotherapy for early psychosis (COPE) with four-year follow-up readmission data." Psychological medicine 35.9 (2005): 1295-1306.
+
+NICE Clinical Guideline: Psychosis and schizophrenia in adults, 2014
+
+NICE TA on nivoloumab and pembrolizumab BUDGET IMPACT STATEMENT
+
+Sculpher,Claxton, Drummond, McCabe. Whither trial-based economic evaluation for health care decision making? 2006
+
+UK Treasury, Green Book, published 2013, updated 2016
+
+UK Department of health, published 2017
+
+http://www.pssru.ac.uk/project-pages/unit-costs/2016/
+
+

@@ -1,0 +1,12 @@
+name: advice_demo
+title: ADVICE_Demo
+username:
+account: david-p-glynn
+server: shinyapps.io
+hostUrl: https://api.shinyapps.io/v1
+appId: 287516
+bundleId: 1236888
+url: https://david-p-glynn.shinyapps.io/advice_demo/
+when: 1519401975.07653
+asMultiple: FALSE
+asStatic: FALSE

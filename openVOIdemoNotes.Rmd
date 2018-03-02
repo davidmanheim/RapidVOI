@@ -1,0 +1,848 @@
+---
+title: "Notes on openVOIdemo"
+output: html_notebook
+---
+
+
+
+### Reactivity for updating VOI results
+
+**Server function**
+
+Create a "managed state variable" which stores the values required for reporting the results to the user: VOIResults. (for an intro to managed state variables see 1:22:46 in R studio Shiny toutorial https://shiny.rstudio.com/tutorial/ )
+
+This is a list which holds all the reults of the analysis under the appropriate headings: e.g. optimalTreatment which holds the result of the best treatment with current evidence. As VOIResults is a list the value of optimalTreatment can be accessed by VOIResults$optimalTreatment.
+
+A managed state variable can be repeatedly overwritten by the user. This allows us to change the results dispalyed in response to the user pressing the reults update button. The managed state variable is created by assiging reactiveValues(), in this case there is nothing within the bracketes meaning that VOIResults does not contain any results yet.
+
+```{r}
+VOIResults <- reactiveValues()
+```
+
+When the user wants to calculate the results or update the results, they press the "action button". in the user interface (ui) there is an action button at the top of the page for each type of analysis (regular RCT, feasibility study, reconsideration of evidence). When the user presses the relevant action button, this will be registerd by the reactive values shown:
+
+```{r} 
+input$runRCT 
+input$runFeas
+input$runRec
+```
+
+The observeEvent() function recognises when the action button has been pressed i.e. when the reactive values have been changed. observeEvent() then executes the relevant code block: 
+
+```{r}
+  VOIResults <- reactiveValues()
+  
+  observeEvent(input$runRCT, {
+    # <Execute this code>
+      })
+```
+
+Each type of analysis (regular RCT, feasibility study, reconsideration of evidence) has its own observeEvent() function. 
+
+```{r}
+  VOIResults <- reactiveValues()
+  
+  observeEvent(input$runRCT, {
+    #  code for: regular RCT
+      })
+  observeEvent(input$runFeas, {
+    #  code for: feasibility study
+      })
+  observeEvent(input$runRec, {
+    #  code for: reconsideration of evidence
+      })
+  
+```
+
+The inputs required and the type of anlaysis will depend on whether the analysis is calculated in terms of the primary endpoint (i.e. natural outcome) or in comprehensive health outcome i.e. costs and QALYs. Therefore an "if else" statement is required which runs the cost and QALY analysis if the user has selected the type of outcome input to be netHealth 
+
+
+```{r}
+
+# appears to be some problem with this code.
+  VOIResults <- reactiveValues()
+  
+  observeEvent(input$runRCT, {
+    if(input$typeOfOutcome == "netHealth"){
+      # run cost and QALY analysis
+      
+    }else{
+      # run natural outcome analysis
+      
+    }
+    })
+  
+
+```
+
+
+We do not want the VOI analysis to be calculated individually for each result as this would take a long time and would mean the results would not come from the same analysis. Therefore a resultsHolder variable is created which holds the results of the appropriate VOI analysis. This will be a list as the output of the VOI analysis is a list. The headings of this list will correspond to the results of the VOI analysis e.g. optimalTreatment. The assignment to the resultsHolder variable must be done using a reactive function as the code it takes will include reactive values which are set by the user.
+
+
+```{r}
+  VOIResults <- reactiveValues()
+  
+  observeEvent(input$runRCT, {
+    if(input$typeOfOutcome == "netHealth"){
+      resultsHolder <- reactive({
+           # VOI function taking user inputs and returning results
+           # for RCT cost and QALY analysis
+        })
+
+    }else{
+      resultsHolder <- reactive({
+           # VOI function taking user inputs and returning results
+           # for RCT natural outcome analysis
+      })
+      
+    }
+    })
+  
+
+```
+
+The values of each element of the list of results must be individually assigned to the VOIResults list. Note that resultsHolder is a reactive function and so requires parenthesis () when calling it.
+
+```{r}
+  VOIResults <- reactiveValues()
+  
+  observeEvent(input$runRCT, {
+    if(input$typeOfOutcome == "netHealth"){
+      resultsHolder <- reactive({
+           # VOI function taking user inputs and returning results
+           # for RCT cost and QALY analysis
+        })
+           # assign the results of the VOI analysis to VOIResults list
+
+    }else{
+      resultsHolder <- reactive({
+           # VOI function taking user inputs and returning results
+           # for RCT natural outcome analysis
+        BinaryOutcomeFunction.v.0.1(numberOfTreatments = input$numberOfTreatments , 
+                                    MCsims = input$MCsims, P_t1 =input$P_t1,
+                                    mu_t2=input$mu_t2, variance_t2=input$variance_t2 ,
+                                    dist_t2=input$dist_t2 , direction_t2= input$direction_t2,
+                                    mu_t3=input$mu_t3 , variance_t3=input$variance_t3 ,
+                                    dist_t3=input$dist_t3 , direction_t3=input$direction_t3 ,
+                                    mu_t4=input$mu_t4 , variance_t4=input$variance_t4 ,
+                                    dist_t4=input$dist_t4 , direction_t4=input$direction_t4 ,
+                                    nameOf_t1=input$nameOf_t1 ,nameOf_t2=input$nameOf_t2 ,
+                                    nameOf_t3=input$nameOf_t3 , nameOf_t4=input$nameOf_t4 ,
+                                    typeOfOutcome=input$typeOfOutcome ,
+                                    incidence=input$incidence,
+                                    timeInformation=input$timeInformation ,
+                                    discountRate=input$discountRate  ,
+                                    durationOfResearch= input$durationOfResearch,
+                                    costResearchFunder=input$costResearchFunder ,
+                                    MCD_t2=input$MCD_t2 , MCD_t3=input$MCD_t3 ,
+                                    MCD_t4=input$MCD_t4 ,
+                                    utilisation_t1=input$utilisation_t1 ,
+                                    utilisation_t2=input$utilisation_t2 ,
+                                    utilisation_t3=input$utilisation_t3 ,
+                                    utilisation_t4=input$utilisation_t4 )
+      })
+      # assign the results of the VOI analysis to VOIResults list
+          VOIResults$optimalTreatment <- resultsHolder()$optimalTreatment
+          VOIResults$probTreatment1isMax <- resultsHolder()$probTreatment1isMax 
+          VOIResults$probTreatment2isMax <- resultsHolder()$probTreatment2isMax 
+          VOIResults$probTreatment3isMax <- resultsHolder()$probTreatment3isMax 
+          VOIResults$probTreatment4isMax <- resultsHolder()$probTreatment4isMax
+          VOIResults$popDuringResearch <- resultsHolder()$popDuringResearch
+          VOIResults$popAfterResearch <- resultsHolder()$popAfterResearch
+          VOIResults$PopTotal <- resultsHolder()$PopTotal 
+          VOIResults$histVOIYear <- resultsHolder()$histVOIYear 
+          VOIResults$valueOfResearchPerYear <- resultsHolder()$valueOfResearchPerYear
+          VOIResults$valueOfImplementationPerYear <- resultsHolder()$valueOfImplementationPerYear
+          VOIResults$Cell_A <- resultsHolder()$Cell_A
+          VOIResults$Cell_C <- resultsHolder()$Cell_C
+          VOIResults$Cell_D <- resultsHolder()$Cell_D
+          VOIResults$maxvalueOfImplementation <- resultsHolder()$maxvalueOfImplementation
+          VOIResults$maxvalueOfResearch <- resultsHolder()$maxvalueOfResearch
+          VOIResults$healthOpportunityCostsOfResearch <- resultsHolder()$healthOpportunityCostsOfResearch
+          VOIResults$valueOfResearchWithCurrentImplementation <- resultsHolder()$valueOfResearchWithCurrentImplementation
+          VOIResults$valueOfResearchWithPerfectImplementation <- resultsHolder()$valueOfResearchWithPerfectImplementation
+          VOIResults$ICER_ResearchWithCurrentImplementation <- resultsHolder()$ICER_ResearchWithCurrentImplementation
+          VOIResults$ICER_ResearchWithPerfectImplementation <- resultsHolder()$ICER_ResearchWithPerfectImplementation
+          VOIResults$valuePer15KResearchSpend <- resultsHolder()$valuePer15KResearchSpend          
+   
+    }
+    })
+  
+
+```
+
+Depending on which action button is pressed, and the type of analysis chosen the approprate results will be written to VOIResults.
+
+The results for each element of VOIResults must be saved to a variable in the server output list using the appropriate render function. This allows it to be transported to the user interface. The Shiny wrapper for server.R is also added here. It is important to note that all the required functions should be defined outside of the shinyServer function as these are requried for the model to run. They are defined outside the server function as then they will only be run once per session (which is all that is required), this improves efficicency, especialy of there are multiple users.
+
+Note the absolute paths are used to locate the required files on my local computer. For publishing the app on shinyapps.io relative paths are required. As ShinyApps is the working directory for the published app, only the file names are required i.e. BinaryOutcomeFunction.R.
+
+```{r}
+
+library(shiny)
+library(fdrtool) # required for halfnormal simulations
+
+# absolute paths for use in desktop development
+source("C:/Users/David/Desktop/CHE home working/ShinyApps/OpenVOIdemo.v.0.1/ShinyFiles/BinaryOutcomeFunction.R", local = TRUE)
+source("C:/Users/David/Desktop/CHE home working/ShinyApps/OpenVOIdemo.v.0.1/ShinyFiles/BinaryQALYFunction.R", local = TRUE)
+source("C:/Users/David/Desktop/CHE home working/ShinyApps/OpenVOIdemo.v.0.1/ShinyFiles/SupplementaryFunctions.R", local = TRUE)
+# relative paths for publishing in shinyapps.io
+#source("BinaryOutcomeFunction.R", local = TRUE)
+#source("BinaryQALYFunction.R", local = TRUE)
+#source("SupplementaryFunctions.R", local = TRUE)
+
+
+shinyServer(function(input, output) {
+  
+  VOIResults <- reactiveValues()
+  
+  observeEvent(input$runRCT, {
+    if(input$typeOfOutcome == "netHealth"){
+      resultsHolder <- reactive({
+        # VOI function taking user inputs and returning results
+        # for RCT cost and QALY analysis
+      })
+      # assign results to VOIResults list
+      
+    }else{
+      resultsHolder <- reactive({
+        BinaryOutcomeFunction.v.0.1(numberOfTreatments = input$numberOfTreatments , 
+                                    MCsims = input$MCsims, P_t1 =input$P_t1,
+                                    mu_t2=input$mu_t2, variance_t2=input$variance_t2 ,
+                                    dist_t2=input$dist_t2 , direction_t2= input$direction_t2,
+                                    mu_t3=input$mu_t3 , variance_t3=input$variance_t3 ,
+                                    dist_t3=input$dist_t3 , direction_t3=input$direction_t3 ,
+                                    mu_t4=input$mu_t4 , variance_t4=input$variance_t4 ,
+                                    dist_t4=input$dist_t4 , direction_t4=input$direction_t4 ,
+                                    nameOf_t1=input$nameOf_t1 ,nameOf_t2=input$nameOf_t2 ,
+                                    nameOf_t3=input$nameOf_t3 , nameOf_t4=input$nameOf_t4 ,
+                                    typeOfOutcome=input$typeOfOutcome ,
+                                    incidence=input$incidence,
+                                    timeInformation=input$timeInformation ,
+                                    discountRate=input$discountRate  ,
+                                    durationOfResearch= input$durationOfResearch,
+                                    costResearchFunder=input$costResearchFunder ,
+                                    MCD_t2=input$MCD_t2 , MCD_t3=input$MCD_t3 ,
+                                    MCD_t4=input$MCD_t4 ,
+                                    utilisation_t1=input$utilisation_t1 ,
+                                    utilisation_t2=input$utilisation_t2 ,
+                                    utilisation_t3=input$utilisation_t3 ,
+                                    utilisation_t4=input$utilisation_t4 )
+      })
+      VOIResults$optimalTreatment <- resultsHolder()$optimalTreatment
+      VOIResults$probTreatment1isMax <- resultsHolder()$probTreatment1isMax 
+      VOIResults$probTreatment2isMax <- resultsHolder()$probTreatment2isMax 
+      VOIResults$probTreatment3isMax <- resultsHolder()$probTreatment3isMax 
+      VOIResults$probTreatment4isMax <- resultsHolder()$probTreatment4isMax
+      VOIResults$popDuringResearch <- resultsHolder()$popDuringResearch
+      VOIResults$popAfterResearch <- resultsHolder()$popAfterResearch
+      VOIResults$PopTotal <- resultsHolder()$PopTotal 
+      VOIResults$ListForhistVOIYear <- resultsHolder()$ListForhistVOIYear 
+      VOIResults$valueOfResearchPerYear <- resultsHolder()$valueOfResearchPerYear
+      VOIResults$valueOfImplementationPerYear <- resultsHolder()$valueOfImplementationPerYear
+      VOIResults$Cell_A <- resultsHolder()$Cell_A
+      VOIResults$Cell_C <- resultsHolder()$Cell_C
+      VOIResults$Cell_D <- resultsHolder()$Cell_D
+      VOIResults$maxvalueOfImplementation <- resultsHolder()$maxvalueOfImplementation
+      VOIResults$maxvalueOfResearch <- resultsHolder()$maxvalueOfResearch
+      VOIResults$healthOpportunityCostsOfResearch <- resultsHolder()$healthOpportunityCostsOfResearch
+      VOIResults$valueOfResearchWithCurrentImplementation <- resultsHolder()$valueOfResearchWithCurrentImplementation
+      VOIResults$valueOfResearchWithPerfectImplementation <- resultsHolder()$valueOfResearchWithPerfectImplementation
+      VOIResults$ICER_ResearchWithCurrentImplementation <- resultsHolder()$ICER_ResearchWithCurrentImplementation
+      VOIResults$ICER_ResearchWithPerfectImplementation <- resultsHolder()$ICER_ResearchWithPerfectImplementation
+      VOIResults$valuePer15KResearchSpend <- resultsHolder()$valuePer15KResearchSpend 
+    }
+  })
+  
+  observeEvent(input$runFeas, {
+    #  similar code for: feasibility study
+  })
+  observeEvent(input$runRec, {
+    #  similar code for: reconsideration of evidence
+  })
+
+  
+  output$nameOf_t1 <- renderText({input$nameOf_t1})
+  output$nameOf_t2 <- renderText({input$nameOf_t2})
+  output$nameOf_t3 <- renderText({input$nameOf_t3})
+  output$nameOf_t4 <- renderText({input$nameOf_t4})
+  output$nameOfOutcome <- renderText({input$nameOfOutcome})
+
+  output$histVOIYear <- renderPlot({plot(VOIResults$ListForhistVOIYear, freq = FALSE,
+                                         main = "Consequences of uncertainty (per year)",
+                                         xlab = "Primary outcomes",
+                                         ylab = "Probability (%)")})
+  
+  output$optimalTreatment <- renderText({VOIResults$optimalTreatment})
+  output$probTreatment1isMax <- renderText({VOIResults$probTreatment1isMax })
+  output$probTreatment2isMax <- renderText({VOIResults$probTreatment2isMax })
+  output$probTreatment3isMax <- renderText({VOIResults$probTreatment3isMax })
+  output$probTreatment4isMax <- renderText({VOIResults$probTreatment4isMax})
+  output$popDuringResearch <- renderText({VOIResults$popDuringResearch})
+  output$popAfterResearch <- renderText({VOIResults$popAfterResearch})
+  output$PopTotal <- renderText({VOIResults$PopTotal })
+  output$valueOfResearchPerYear <- renderText({VOIResults$valueOfResearchPerYear})
+  output$valueOfImplementationPerYear <- renderText({VOIResults$valueOfImplementationPerYear})
+  output$Cell_A <- renderText({VOIResults$Cell_A})
+  output$Cell_C <- renderText({VOIResults$Cell_C})
+  output$Cell_D <- renderText({VOIResults$Cell_D})
+  output$maxvalueOfImplementation <- renderText({VOIResults$maxvalueOfImplementation})
+  output$maxvalueOfResearch <- renderText({VOIResults$maxvalueOfResearch})
+  output$healthOpportunityCostsOfResearch <-   renderText({VOIResults$healthOpportunityCostsOfResearch})
+  output$valueOfResearchWithCurrentImplementation <- renderText({VOIResults$valueOfResearchWithCurrentImplementation})
+  output$valueOfResearchWithPerfectImplementation <- renderText({VOIResults$valueOfResearchWithPerfectImplementation})
+  output$ICER_ResearchWithCurrentImplementation <- renderText({VOIResults$ICER_ResearchWithCurrentImplementation})
+  output$ICER_ResearchWithPerfectImplementation <- renderText({VOIResults$ICER_ResearchWithPerfectImplementation})
+  output$valuePer15KResearchSpend <- renderText({VOIResults$valuePer15KResearchSpend})
+  
+})
+  
+```
+
+
+**ui function**
+
+The results saved to the server output list can now be placed in the approprate part of the results section using the approprate output function (both outputs here are considered "text"). Listing the outputs as shown below will place each of the outputs below one another. Formatting of the user interface will be described later in the document.
+
+```{r}
+plotOutput("histVOIYear")
+
+textOutput("optimalTreatment" ) 
+textOutput("probTreatment1isMax" ) 
+# and so on.
+
+```
+
+The user inputs required here are shown below. Note that these are the inputs required for a standard RCT with a binary outcome which expressed results in terms of natural outcomes.
+
+```{r}
+
+selectInput(inputId = "typeOfOutcome", label = "Type of outcome", 
+            choices = c("Benefit" = "benefit", 
+                        "Harm" = "harm", 
+                        "Net health effect (QALYs)" = "netHealth"),
+            selected = "Net health effect (QALYs)") # benefit , harm, net health effect
+
+selectInput(inputId = "typeOfResearch", label = "Type of research", 
+            choices = c("RCT" = "RCT", 
+                        "Feasibility study" = "feasibility", 
+                        "Reconsideration of evidence" = "reconsider"),
+            selected = "RCT") 
+
+numericInput("numberOfTreatments", "How many treatments are being investigated?",
+             value = 2, min = 2, max = 4)
+
+# and so on...
+
+```
+
+
+The above inputs and outputs must be structured in the user interface to make the tool usable. Below we show all inputs on one side of the page and all ouptputs on the other. Note: this shinyUI function works in conjunction with the shinyServer function above. NB: the required functions must be loaded for the shinyServer function to work.
+
+```{r}
+library(shiny)
+
+# Define UI for application that draws a histogram
+shinyUI(fluidPage(
+  
+  # Application title
+  titlePanel("Demo"),
+  
+  # Sidebar with a slider input for number of bins 
+  sidebarLayout(
+    sidebarPanel(
+      
+      selectInput(inputId = "typeOfOutcome", label = "Type of outcome", 
+                  choices = c("Benefit" = "benefit", 
+                              "Harm" = "harm", 
+                              "Net health effect (QALYs)" = "netHealth"),
+                  selected = "Net health effect (QALYs)"), # benefit , harm, net health effect
+      
+      selectInput(inputId = "typeOfResearch", label = "Type of research", 
+                  choices = c("RCT" = "RCT", 
+                              "Feasibility study" = "feasibility", 
+                              "Reconsideration of evidence" = "reconsider"),
+                  selected = "RCT"),
+      
+      numericInput("numberOfTreatments", "How many treatments are being investigated?",
+                   value = 2, min = 2, max = 4),
+      
+      numericInput("P_t1", "Probability of outcome with treatment 1",
+                   value = 0.5, min = 0, max = 1, step = 0.05),
+      
+      textInput("nameOf_t1", "Name of treatment 1 (optional)", 
+                value = "late PTP"),
+      
+      textInput("nameOf_t2", "Name of treatment 2 (optional)", 
+                value = "early PTP"),
+      
+      selectInput("dist_t2", label = "Distribution of treatment 2", 
+                  choices = c("Normal" = "norm", 
+                              "Half Normal" = "halfNorm"),
+                  selected = "Normal"),
+      
+      numericInput("incidence", "Incidence per annum",
+                   value = 8800, min = 0, max = NA, step = 20),
+      
+      numericInput("timeInformation", "Time over which evidence would be valuable (years)",
+                   value = 15, min = 0, max = NA, step = 0.1),
+      
+      numericInput("discountRate", "Discount rate (%)",
+                   value = 3.5, min = 0, max = 100, step = 0.1),
+      
+      numericInput("MCD_t2", "MCD for treatment 2",
+                   value = 0, min = NA, max = NA, step = 0.05,
+                   width = '50%'),
+      
+      actionButton("runRCT", label = "Run calculation for RCT"),
+      actionButton("runFeas", label = "Run calculation for feasibility trial"),
+      actionButton("runRec", label = "Run calculation for reconsideration of evidence"),
+      
+      textInput("nameOfOutcome", "Name of outcome"),
+      
+      textInput("nameOf_t3", "Name of treatment 3 (optional)", 
+                value = "treatment 3"),
+      
+      textInput("nameOf_t4", "Name of treatment 4 (optional)", 
+                value = "treatment 4"),
+      
+      selectInput("dist_t3", label = "Distribution of treatment 3", 
+                  choices = c("Normal" = "norm", 
+                              "Half Normal" = "halfNorm"),
+                  selected = "Normal"),
+      
+      selectInput("dist_t4", label = "Distribution of treatment 4", 
+                  choices = c("Normal" = "norm", 
+                              "Half Normal" = "halfNorm"),
+                  selected = "Normal"),
+      
+      numericInput("mu_t2", "Mean log odds ratio for treatment 2",
+                   value = 0, min = NA, max = NA, step = 0.05,
+                   width = '50%'),
+      
+      numericInput("variance_t2", "Variance of log odds ratio for treatment 2",
+                   value = 0.25, min = NA, max = NA, step = 0.05,
+                   width = '50%'),
+      
+      numericInput("mu_t3", "Mean log odds ratio for treatment 3",
+                   value = NA, min = NA, max = NA, step = 0.05,
+                   width = '50%'),
+      
+      numericInput("variance_t3", "Variance of log odds ratio for treatment 3",
+                   value = NA, min = NA, max = NA, step = 0.05,
+                   width = '50%'),
+      
+      numericInput("mu_t4", "Mean log odds ratio for treatment 4",
+                   value = NA, min = NA, max = NA, step = 0.05,
+                   width = '50%'),
+      
+      numericInput("variance_t4", "Variance of log odds ratio for treatment 3",
+                   value = NA, min = NA, max = NA, step = 0.05,
+                   width = '50%'),
+      
+      selectInput("direction_t2", label = "Direction of distribution for treatment 2", 
+                  choices = c("Always positive" = "alwaysPositive", 
+                              "Always negative" = "alwaysNegative"),
+                  selected = "alwaysPositive"),
+      
+      selectInput("direction_t3", label = "Direction of distribution for treatment 3", 
+                  choices = c("Always positive" = "alwaysPositive", 
+                              "Always negative" = "alwaysNegative"),
+                  selected = "alwaysPositive"),
+      
+      selectInput("direction_t4", label = "Direction of distribution for treatment 3", 
+                  choices = c("Always positive" = "alwaysPositive", 
+                              "Always negative" = "alwaysNegative"),
+                  selected = "alwaysPositive"),
+      
+      numericInput("utilisation_t1", "Utilisation of treatment 1 (%)",
+                   value = 100, min = 0, max = 100, step = 0.1),
+      
+      numericInput("utilisation_t2", "Utilisation of treatment 2 (%)",
+                   value = 0, min = 0, max = 100, step = 0.1),
+      
+      numericInput("utilisation_t3", "Utilisation of treatment 3 (%)",
+                   value = 0, min = 0, max = 100, step = 0.1),
+      
+      numericInput("utilisation_t4", "Utilisation of treatment 4 (%)",
+                   value = 0, min = 0, max = 100, step = 0.1),
+      
+      numericInput("MCD_t3", "MCD for treatment 3",
+                   value = 0, min = NA, max = NA, step = 0.05,
+                   width = '50%'),
+      
+      numericInput("MCD_t4", "MCD for treatment 4",
+                   value = 0, min = NA, max = NA, step = 0.05,
+                   width = '50%'),
+      
+      numericInput("costResearchFunder", "Cost of research to funder",
+                   value = 2854000, min = 0, max = NA, step = 100),
+      
+      numericInput("durationOfResearch", "Expected duration of research (years)",
+                   value = 5, min = 0, max = NA, step = 0.1),
+      
+      numericInput("MCsims", "Number of simulations",
+                   value = 50000, min = 0, max = 10000000, step = 500),
+      
+      numericInput("costHealthSystem", "Costs of research imposed on health system",
+                   value = NA, min = 0, max = NA, step = 100)
+      
+      
+      
+      
+      
+    ),
+    
+    # Show a plot of the generated distribution
+    mainPanel(
+      
+      textOutput("nameOf_t1"),
+      textOutput("nameOf_t2"), 
+      textOutput("nameOf_t3"), # conditional - is this a problem?
+      textOutput("nameOf_t4"),# conditional - is this a problem?
+      # name of outcome
+      textOutput("nameOfOutcome"), # conditional - is this a problem?
+      
+      plotOutput("histVOIYear"),
+      
+      textOutput("optimalTreatment" ) ,
+      textOutput("probTreatment1isMax" ) ,
+      textOutput("probTreatment2isMax" ) ,
+      textOutput("probTreatment3isMax" ) ,
+      textOutput("probTreatment4isMax" ) ,
+      textOutput("popDuringResearch" ) ,
+      textOutput("popAfterResearch" ) ,
+      textOutput("PopTotal" ) ,
+      textOutput("valueOfResearchPerYear" ),
+      textOutput("valueOfImplementationPerYear" ) ,
+      textOutput("Cell_A" ) ,
+      textOutput("Cell_C" ) ,
+      textOutput("Cell_D" ) ,
+      textOutput("maxvalueOfImplementation" ) ,
+      textOutput("maxvalueOfResearch" ) ,
+      textOutput("healthOpportunityCostsOfResearch" ) ,
+      textOutput("valueOfResearchWithCurrentImplementation" ) ,
+      textOutput("valueOfResearchWithPerfectImplementation" ) ,
+      textOutput("ICER_ResearchWithCurrentImplementation" ) ,
+      textOutput("ICER_ResearchWithPerfectImplementation" ) ,
+      textOutput("valuePer15KResearchSpend")
+      
+      
+    )
+  )
+))
+
+
+```
+
+
+###Overall ui layout
+
+A tabset format is used in this app as there is a lot of input informaion and output informaiton and the inputs requred depend on the type of analysis required.
+
+The main tabs are: Home, Inputs, Results, Report and About. Within the Inputs tab there is: General inputs (which are common across all model types), RCT, Feasibility and Reconsider evidence.
+
+This nested tab structure is created using the code below:
+
+```{r}
+
+shinyUI(fluidPage(
+ titlePanel("Open VOI - Demo"),
+ 
+ tabsetPanel(
+   tabPanel("About", "<code for About ui>"),
+   tabPanel("Inputs", tabsetPanel(
+     tabPanel("General Inputs", "<code for General Inputs ui>"),
+     tabPanel("Standard RCT", "<code for RCT ui>"),
+     tabPanel("Feasibility", "<code for Feasibility ui>"),
+     tabPanel("Reconsider Evidence", "<code for reconsider evidence ui>"))),
+   tabPanel("Results", "<code for REsults ui>"),
+   tabPanel("Report", "<code for report ui>"),
+   tabPanel("About", "<code for about ui>")
+ )
+   
+))
+
+```
+
+Below I enter the elements into the approriate tabs for a complete ui.R file which works in conjunction with the server.R function above. Note: each tabPanel is treated as its own ui.R page, which can be structured using fluidRow and column. Or you can just type text and this will appear as part of an unstructured page.
+
+
+```{r}
+
+
+library(shiny)
+
+shinyUI(fluidPage(
+ titlePanel("Open VOI - Demo"),
+ 
+ tabsetPanel(
+   tabPanel("About", 
+            br(),
+            h3("What this app does"),
+            p("This is an R Shiny App which allows easy and quick value of information calculations to
+estimate the value of research proposals. The approach translates the uncertainty in the primary outcome into health consequences. If a decision is uncertain there is a chance that the optimal treatment will not be chosen. The value of research is the value of avoiding sub optimal decisions."), 
+p("Full details of the approach used and applied examples using these methods are forthcoming. In the meantime see https://www.york.ac.uk/che/research/teehta/research-prioritisation/ for further details.")
+      
+            ),
+   tabPanel("Inputs", tabsetPanel(
+     tabPanel("General Inputs", 
+              selectInput(inputId = "typeOfOutcome", label = "Type of outcome", 
+                  choices = c("Benefit" = "benefit", 
+                              "Harm" = "harm", 
+                              "Net health effect (QALYs)" = "netHealth"),
+                  selected = "Net health effect (QALYs)"), # benefit , harm, net health effect
+      
+              selectInput(inputId = "typeOfResearch", label = "Type of research", 
+                          choices = c("RCT" = "RCT", 
+                                      "Feasibility study" = "feasibility", 
+                                      "Reconsideration of evidence" = "reconsider"),
+                          selected = "RCT"),
+              
+              numericInput("numberOfTreatments", "How many treatments are being investigated?",
+                           value = 2, min = 2, max = 4),
+              
+              numericInput("P_t1", "Probability of outcome with treatment 1",
+                           value = 0.5, min = 0, max = 1, step = 0.05),
+              
+              textInput("nameOf_t1", "Name of treatment 1 (optional)", 
+                        value = "late PTP"),
+              
+              textInput("nameOf_t2", "Name of treatment 2 (optional)", 
+                        value = "early PTP"),
+              
+              selectInput("dist_t2", label = "Distribution of treatment 2", 
+                          choices = c("Normal" = "norm", 
+                                      "Half Normal" = "halfNorm"),
+                          selected = "Normal"),
+              
+              numericInput("incidence", "Incidence per annum",
+                           value = 8800, min = 0, max = NA, step = 20),
+              
+              numericInput("timeInformation", "Time over which evidence would be valuable (years)",
+                           value = 15, min = 0, max = NA, step = 0.1),
+              
+              numericInput("discountRate", "Discount rate (%)",
+                           value = 3.5, min = 0, max = 100, step = 0.1),
+              
+              numericInput("MCD_t2", "MCD for treatment 2",
+                           value = 0, min = NA, max = NA, step = 0.05,
+                           width = '50%'),
+              
+
+              
+              textInput("nameOfOutcome", "Name of outcome"),
+              
+              textInput("nameOf_t3", "Name of treatment 3 (optional)", 
+                        value = "treatment 3"),
+              
+              textInput("nameOf_t4", "Name of treatment 4 (optional)", 
+                        value = "treatment 4"),
+              
+              selectInput("dist_t3", label = "Distribution of treatment 3", 
+                          choices = c("Normal" = "norm", 
+                                      "Half Normal" = "halfNorm"),
+                          selected = "Normal"),
+              
+              selectInput("dist_t4", label = "Distribution of treatment 4", 
+                          choices = c("Normal" = "norm", 
+                                      "Half Normal" = "halfNorm"),
+                          selected = "Normal"),
+              
+              numericInput("mu_t2", "Mean log odds ratio for treatment 2",
+                           value = 0, min = NA, max = NA, step = 0.05,
+                           width = '50%'),
+              
+              numericInput("variance_t2", "Variance of log odds ratio for treatment 2",
+                           value = 0.25, min = NA, max = NA, step = 0.05,
+                           width = '50%'),
+              
+              numericInput("mu_t3", "Mean log odds ratio for treatment 3",
+                           value = NA, min = NA, max = NA, step = 0.05,
+                           width = '50%'),
+              
+              numericInput("variance_t3", "Variance of log odds ratio for treatment 3",
+                           value = NA, min = NA, max = NA, step = 0.05,
+                           width = '50%'),
+              
+              numericInput("mu_t4", "Mean log odds ratio for treatment 4",
+                           value = NA, min = NA, max = NA, step = 0.05,
+                           width = '50%'),
+              
+              numericInput("variance_t4", "Variance of log odds ratio for treatment 3",
+                           value = NA, min = NA, max = NA, step = 0.05,
+                           width = '50%'),
+              
+              selectInput("direction_t2", label = "Direction of distribution for treatment 2", 
+                          choices = c("Always positive" = "alwaysPositive", 
+                                      "Always negative" = "alwaysNegative"),
+                          selected = "alwaysPositive"),
+              
+              selectInput("direction_t3", label = "Direction of distribution for treatment 3", 
+                          choices = c("Always positive" = "alwaysPositive", 
+                                      "Always negative" = "alwaysNegative"),
+                          selected = "alwaysPositive"),
+              
+              selectInput("direction_t4", label = "Direction of distribution for treatment 3", 
+                          choices = c("Always positive" = "alwaysPositive", 
+                                      "Always negative" = "alwaysNegative"),
+                          selected = "alwaysPositive"),
+              
+              numericInput("utilisation_t1", "Utilisation of treatment 1 (%)",
+                           value = 100, min = 0, max = 100, step = 0.1),
+              
+              numericInput("utilisation_t2", "Utilisation of treatment 2 (%)",
+                           value = 0, min = 0, max = 100, step = 0.1),
+              
+              numericInput("utilisation_t3", "Utilisation of treatment 3 (%)",
+                           value = 0, min = 0, max = 100, step = 0.1),
+              
+              numericInput("utilisation_t4", "Utilisation of treatment 4 (%)",
+                           value = 0, min = 0, max = 100, step = 0.1),
+              
+              numericInput("MCD_t3", "MCD for treatment 3",
+                           value = 0, min = NA, max = NA, step = 0.05,
+                           width = '50%'),
+              
+              numericInput("MCD_t4", "MCD for treatment 4",
+                           value = 0, min = NA, max = NA, step = 0.05,
+                           width = '50%'),
+              
+              numericInput("costResearchFunder", "Cost of research to funder",
+                           value = 2854000, min = 0, max = NA, step = 100)
+              
+              
+              
+              ),
+     tabPanel("Standard RCT", 
+              actionButton("runRCT", label = "Run calculation for RCT"),
+              numericInput("durationOfResearch", "Expected duration of research (years)",
+                           value = 5, min = 0, max = NA, step = 0.1),
+              
+              numericInput("MCsims", "Number of simulations",
+                           value = 50000, min = 0, max = 10000000, step = 500),
+              
+              numericInput("costHealthSystem", "Costs of research imposed on health system",
+                           value = NA, min = 0, max = NA, step = 100)
+             
+              ),
+     tabPanel("Feasibility", 
+               actionButton("runFeas", label = "Run calculation for feasibility trial")
+              
+              ),
+     tabPanel("Reconsider Evidence", 
+              actionButton("runRec", label = "Run calculation for reconsideration of evidence")
+              
+              ))),
+   tabPanel("Results", 
+            textOutput("nameOf_t1"),
+      textOutput("nameOf_t2"), 
+      textOutput("nameOf_t3"), # conditional - is this a problem?
+      textOutput("nameOf_t4"),# conditional - is this a problem?
+      # name of outcome
+      textOutput("nameOfOutcome"), # conditional - is this a problem?
+      
+      plotOutput("histVOIYear"),
+      
+      textOutput("optimalTreatment" ) ,
+      textOutput("probTreatment1isMax" ) ,
+      textOutput("probTreatment2isMax" ) ,
+      textOutput("probTreatment3isMax" ) ,
+      textOutput("probTreatment4isMax" ) ,
+      textOutput("popDuringResearch" ) ,
+      textOutput("popAfterResearch" ) ,
+      textOutput("PopTotal" ) ,
+      textOutput("valueOfResearchPerYear" ),
+      textOutput("valueOfImplementationPerYear" ) ,
+      textOutput("Cell_A" ) ,
+      textOutput("Cell_C" ) ,
+      textOutput("Cell_D" ) ,
+      textOutput("maxvalueOfImplementation" ) ,
+      textOutput("maxvalueOfResearch" ) ,
+      textOutput("healthOpportunityCostsOfResearch" ) ,
+      textOutput("valueOfResearchWithCurrentImplementation" ) ,
+      textOutput("valueOfResearchWithPerfectImplementation" ) ,
+      textOutput("ICER_ResearchWithCurrentImplementation" ) ,
+      textOutput("ICER_ResearchWithPerfectImplementation" ) ,
+      textOutput("valuePer15KResearchSpend")
+            
+            ),
+   tabPanel("Report", "<code for report ui>"),
+   tabPanel("About", "<code for about ui>")
+ )
+   
+))
+
+```
+
+
+
+
+
+
+
+
+
+
+
+
+### Writing text for results
+
+Text using the reulsts of the analysis must be defined within the server.R function and displayed as blocks in the user interface. For example, in order to dispaly the text "The name of treatment 1 is late PTP" this must be pased together in the renderText function on the server side and then this entire sentence is called using a output variable name. This approach means that the eventual text output must be designted in chunks on the server side, then then chunks must be arranged on the page on the ui side.
+
+```{r}
+server <- function(input, output){
+ 
+  output$nameOf_t1 <- renderText({
+    paste("The name of treatment 1 is", input$nameOf_t1)
+          })
+  
+}
+
+ui <- fluidPage(
+ 
+  textOutput("nameOf_t1")
+   
+)
+
+```
+
+
+
+### Creating tables in output
+
+Follow this method
+https://stackoverflow.com/questions/27821072/r-shiny-edit-the-format-of-a-table-output
+
+create data frame and add formatting
+
+
+
+## Reactive input names
+
+This app is required to allow for three different types of primary endpoint: binary, continuous and survival. The relative effect for the first two is required in terms of log odds ratio. The relative effect for the survival endpoint is a log hazard ratio.
+
+If the distribtion of these inputs is assumed to be normal then the mean and variance inputed by the user are saved in the app as "mu_tn" and "variance_tn" where n is the number of the treatment.
+
+The label for the input box for "mu_tn" will read either "Mean of log odds ratio" or "Mean of log hazard ratio" depending on the type of endpoint chosen by the user (either binary, continuous or survival).
+
+The demos below show two ways to code this:
+
+https://shiny.rstudio.com/reference/shiny/1.0.5/updateTextInput.html
+
+http://shiny.rstudio.com/gallery/update-input-demo.html
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

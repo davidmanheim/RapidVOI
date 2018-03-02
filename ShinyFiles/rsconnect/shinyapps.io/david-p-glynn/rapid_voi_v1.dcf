@@ -1,0 +1,12 @@
+name: rapid_voi_v1
+title: Rapid VOI v1
+username:
+account: david-p-glynn
+server: shinyapps.io
+hostUrl: https://api.shinyapps.io/v1
+appId: 290070
+bundleId: 1244715
+url: https://david-p-glynn.shinyapps.io/rapid_voi_v1/
+when: 1519817680.79539
+asMultiple: FALSE
+asStatic: FALSE
